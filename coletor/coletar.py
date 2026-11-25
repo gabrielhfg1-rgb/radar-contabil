@@ -206,6 +206,7 @@ def salvar(itens, status, classif_config):
         "meses": sorted(por_mes, reverse=True),
         "total": len(itens),
         "areas": classif_config["areas_painel"],
+        "setores": classif_config.get("setores_painel", []),
         "fontes": status,
     }
     _gravar(PASTA_DADOS / "indice.json", indice)
@@ -232,6 +233,8 @@ def main():
     with open(RAIZ / "categorias.json", encoding="utf-8") as f:
         cat_config = json.load(f)
     classificador = Classificador(cat_config)
+    setores_cfg = cat_config.get("setores", [])
+    class_setores = Classificador({"areas": setores_cfg, "outros": {"id": ""}})
     areas_painel = [{"id": a["id"], "nome": a["nome"], "cor": a.get("cor", "#555")} for a in cat_config["areas"]]
     areas_painel.append(cat_config.get("outros", {"id": "outros", "nome": "Outros", "cor": "#7f8c8d"}))
 
@@ -275,8 +278,10 @@ def main():
         item["esfera"] = esfera_da_fonte.get(item["fonte"], "geral")
         item["resumo"] = resumir(item.get("resumo", ""), LIMITE_EMENTA if item.get("tipo") == "projeto" else 280)
         item["areas"] = classificador.classificar(item["titulo"], item["resumo"], *item.get("categorias_fonte", []))
+        item["setores"] = [x for x in class_setores.classificar(item["titulo"], item["resumo"]) if x]
 
     cat_config["areas_painel"] = areas_painel
+    cat_config["setores_painel"] = [{"id": x["id"], "nome": x["nome"]} for x in setores_cfg]
     salvar(historico, status, cat_config)
     falhas = sum(1 for s in status if not s["ok"])
     print(f"\nTotal no historico: {len(historico)} (novos nesta rodada: {len(historico) - antes}). "

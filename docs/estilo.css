@@ -98,6 +98,9 @@ body {
 .esfera[aria-pressed="true"] { background: var(--primaria); border-color: var(--primaria); color: #fff; }
 .esfera[aria-pressed="true"] .qtd { color: rgba(255, 255, 255, 0.85); }
 .esfera.vazia { opacity: 0.5; }
+.etiqueta.etiqueta-setor { background: none; border: 1px solid var(--borda); color: var(--sutil); }
+.etiqueta.etiqueta-setor::before { display: none; }
+.chips-setores .chip .ponto { border-radius: 2px; }
 .situacao { margin: 2px 0 4px; font-size: 0.8rem; color: var(--sutil); }
 .situacao strong { color: var(--texto); font-weight: 600; }
 

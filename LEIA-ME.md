@@ -68,6 +68,7 @@ A partir daí, o robô roda sozinho a cada 3 horas.
 
 - **Notícias / Leis e projetos:** as duas abas no topo separam as notícias do dia a dia dos projetos de lei da Câmara. Na aba de leis, o período padrão é "Todo o histórico" e a ementa aparece inteira, agrupada pelo mês em que o projeto foi apresentado.
 - **Esferas:** acima da lista, escolha de onde vem a informação: Câmara dos Deputados, Senado Federal, STF, Estadual, Municipal ou Portais e Receita. Na aba de leis, os projetos do Senado mostram também a situação atual (ex.: aguardando despacho, transformada em norma jurídica).
+- **Setores:** abaixo das áreas, filtre por setor econômico (Agronegócio e Rural, Comércio e Varejo, Indústria, Serviços, Construção, Saúde, Tecnologia, Transporte, Financeiro, Educação, Energia, Terceiro Setor). As palavras de cada setor ficam em `categorias.json`, na lista `"setores"`, e se editam igual às áreas.
 - **Áreas:** toque nas etiquetas coloridas no topo. Dá para escolher mais de uma. "Todas" limpa a escolha.
 - **Busca:** digite uma palavra (acentos não importam).
 - **Botão de filtros (☰):** escolha *Mostrar* (todos, só novos, não lidos, favoritos), *Período* e *Fonte*, e se quer esconder os itens "Outros".

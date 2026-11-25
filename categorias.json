@@ -154,5 +154,246 @@
     "id": "outros",
     "nome": "Outros",
     "cor": "#7f8c8d"
-  }
+  },
+  "_instrucoes_setores": "Setores economicos: funcionam como as areas. Um item pode ter mais de um setor ou nenhum.",
+  "setores": [
+    {
+      "id": "rural",
+      "nome": "Agronegócio e Rural",
+      "palavras": [
+        "agronegócio",
+        "agro",
+        "rural",
+        "produtor rural",
+        "agropecuária",
+        "agricultura",
+        "agrícola",
+        "pecuária",
+        "Funrural",
+        "ITR",
+        "DITR",
+        "safra",
+        "cooperativa agrícola",
+        "agrotóxico",
+        "agrotóxicos",
+        "defensivos",
+        "crédito rural",
+        "LCA",
+        "CPR"
+      ]
+    },
+    {
+      "id": "varejo",
+      "nome": "Comércio e Varejo",
+      "palavras": [
+        "varejo",
+        "varejista",
+        "comércio",
+        "comerciante",
+        "lojista",
+        "loja",
+        "lojas",
+        "supermercado",
+        "supermercados",
+        "e-commerce",
+        "comércio eletrônico",
+        "marketplace",
+        "atacado",
+        "atacadista",
+        "ICMS-ST",
+        "substituição tributária",
+        "shopping",
+        "franquia"
+      ]
+    },
+    {
+      "id": "industria",
+      "nome": "Indústria",
+      "palavras": [
+        "indústria",
+        "industrial",
+        "industriais",
+        "fábrica",
+        "IPI",
+        "manufatura",
+        "CNI",
+        "insumos",
+        "Zona Franca",
+        "siderurgia",
+        "têxtil",
+        "química"
+      ]
+    },
+    {
+      "id": "servicos",
+      "nome": "Serviços e Profissionais Liberais",
+      "palavras": [
+        "prestação de serviços",
+        "prestador de serviços",
+        "prestadores de serviços",
+        "ISS",
+        "ISSQN",
+        "NFS-e",
+        "profissionais liberais",
+        "profissional liberal",
+        "advogados",
+        "médicos",
+        "consultoria",
+        "pejotização"
+      ]
+    },
+    {
+      "id": "construcao",
+      "nome": "Construção e Imobiliário",
+      "palavras": [
+        "construção civil",
+        "construtora",
+        "construtoras",
+        "incorporação imobiliária",
+        "incorporadora",
+        "imobiliário",
+        "imobiliária",
+        "imóvel",
+        "imóveis",
+        "ITBI",
+        "IPTU",
+        "aluguel",
+        "locação",
+        "RET",
+        "habitação"
+      ]
+    },
+    {
+      "id": "saude",
+      "nome": "Saúde",
+      "palavras": [
+        "saúde",
+        "hospital",
+        "hospitais",
+        "clínica",
+        "clínicas",
+        "médico",
+        "médicos",
+        "farmácia",
+        "farmácias",
+        "medicamento",
+        "medicamentos",
+        "plano de saúde",
+        "planos de saúde",
+        "farmacêutico",
+        "farmacêuticos",
+        "SUS"
+      ]
+    },
+    {
+      "id": "tecnologia",
+      "nome": "Tecnologia",
+      "palavras": [
+        "tecnologia",
+        "software",
+        "startup",
+        "startups",
+        "inteligência artificial",
+        "IA",
+        "dados pessoais",
+        "LGPD",
+        "plataforma digital",
+        "plataformas digitais",
+        "big techs",
+        "criptoativos",
+        "cripto"
+      ]
+    },
+    {
+      "id": "transporte",
+      "nome": "Transporte e Logística",
+      "palavras": [
+        "transporte",
+        "transportadora",
+        "transportadoras",
+        "logística",
+        "frete",
+        "fretes",
+        "combustível",
+        "combustíveis",
+        "caminhoneiro",
+        "caminhoneiros",
+        "CT-e",
+        "MDF-e",
+        "rodoviário",
+        "aéreo",
+        "portos",
+        "aplicativo de transporte"
+      ]
+    },
+    {
+      "id": "financeiro",
+      "nome": "Financeiro e Seguros",
+      "palavras": [
+        "banco",
+        "bancos",
+        "bancário",
+        "instituição financeira",
+        "instituições financeiras",
+        "fintech",
+        "seguro",
+        "seguros",
+        "seguradora",
+        "previdência privada",
+        "Pix",
+        "cartão de crédito",
+        "fundo de investimento",
+        "investidor"
+      ]
+    },
+    {
+      "id": "educacao",
+      "nome": "Educação",
+      "palavras": [
+        "educação",
+        "escola",
+        "escolas",
+        "universidade",
+        "universidades",
+        "ensino",
+        "Prouni",
+        "Fies",
+        "faculdade"
+      ]
+    },
+    {
+      "id": "energia",
+      "nome": "Energia",
+      "palavras": [
+        "energia",
+        "energia elétrica",
+        "energia solar",
+        "eletropostos",
+        "geração distribuída",
+        "petróleo",
+        "gás",
+        "mineração",
+        "royalties",
+        "ANEEL"
+      ]
+    },
+    {
+      "id": "terceiro",
+      "nome": "Terceiro Setor",
+      "palavras": [
+        "terceiro setor",
+        "ONG",
+        "ONGs",
+        "entidade sem fins lucrativos",
+        "entidades sem fins lucrativos",
+        "associação",
+        "fundação",
+        "filantrópica",
+        "filantrópicas",
+        "imunidade tributária",
+        "OSC",
+        "OSCIP"
+      ]
+    }
+  ]
 }

@@ -22,13 +22,15 @@
     mesesCarregados: new Set(),
     areas: [],
     corDaArea: {},
+    setores: [],
+    nomeDoSetor: {},
     nomeDaArea: {},
     lidos: new Set(guardar.ler("lidos", [])),
     favoritos: guardar.ler("favoritos", {}),   // id -> item (guarda o item inteiro)
     visitaAnterior: null,
     pagina: 1,
     filtros: Object.assign(
-      { areas: [], fonte: "", tipo: "noticia", periodo: "30", periodoLeis: "tudo", esfera: "", mostrar: "todos", esconderOutros: true, busca: "" },
+      { areas: [], fonte: "", tipo: "noticia", periodo: "30", periodoLeis: "tudo", esfera: "", setor: "", mostrar: "todos", esconderOutros: true, busca: "" },
       guardar.ler("filtros", {}),
       { busca: "" }
     ),
@@ -54,7 +56,7 @@
     atualizado: $("atualizado"), areas: $("areas"), busca: $("busca"), lista: $("lista"),
     mais: $("btn-mais"), vazio: $("vazio"), resumo: $("resumo-lista"), painel: $("painel-filtros"),
     btnFiltros: $("btn-filtros"), contadorFiltros: $("contador-filtros"), fonte: $("f-fonte"),
-    abas: $("abas"), esferas: $("esferas"), rotuloFonte: $("rotulo-fonte"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
+    abas: $("abas"), esferas: $("esferas"), setores: $("setores"), rotuloFonte: $("rotulo-fonte"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
     fontesStatus: $("fontes-status"),
   };
 
@@ -146,6 +148,8 @@
     }
     estado.areas = estado.indice.areas || [];
     estado.areas.forEach((a) => { estado.corDaArea[a.id] = a.cor; estado.nomeDaArea[a.id] = a.nome; });
+    estado.setores = estado.indice.setores || [];
+    estado.setores.forEach((x) => { estado.nomeDoSetor[x.id] = x.nome; });
     const at = new Date(estado.indice.atualizado_em);
     el.atualizado.textContent = "Atualizado " + formatarData(at.toISOString()) + " · " + (estado.indice.total || 0) + " itens";
     mostrarStatusFontes();
@@ -244,6 +248,19 @@
     el.esferas.innerHTML = html;
   }
 
+  function desenharSetores(lista) {
+    const conta = {};
+    lista.forEach((i) => (i.setores || []).forEach((x) => { conta[x] = (conta[x] || 0) + 1; }));
+    const sel = estado.filtros.setor;
+    let html = '<button class="chip" data-setor="" aria-pressed="' + !sel + '" style="--cor:#1f5a85">Todos os setores</button>';
+    estado.setores.forEach((x) => {
+      if (!conta[x.id] && sel !== x.id) return;
+      html += '<button class="chip" data-setor="' + escapar(x.id) + '" aria-pressed="' + (sel === x.id) +
+        '" style="--cor:#5d6d7e"><span class="ponto"></span>' + escapar(x.nome) + ' <span class="qtd">' + (conta[x.id] || 0) + "</span></button>";
+    });
+    el.setores.innerHTML = html;
+  }
+
   function desenharChips(semArea) {
     const contagem = {};
     semArea.forEach((i) => i.areas.forEach((a) => { contagem[a] = (contagem[a] || 0) + 1; }));
@@ -273,7 +290,8 @@
       '<a class="item-titulo" href="' + escapar(linkSeguro(i.link)) + '" target="_blank" rel="noopener noreferrer">' + escapar(i.titulo) + "</a>" +
       (i.situacao ? '<p class="situacao">Situação: <strong>' + escapar(i.situacao) + "</strong></p>" : "") +
       (i.resumo ? '<p class="item-resumo">' + escapar(i.resumo) + "</p>" : "") +
-      '<div class="item-rodape"><div class="etiquetas">' + etiquetas + "</div>" +
+      '<div class="item-rodape"><div class="etiquetas">' + etiquetas +
+        (i.setores || []).map((x) => '<span class="etiqueta etiqueta-setor">' + escapar(estado.nomeDoSetor[x] || x) + "</span>").join("") + "</div>" +
         '<div class="acoes">' +
           '<button class="btn-fav" aria-pressed="' + fav + '" title="' + (fav ? "Tirar dos favoritos" : "Favoritar") + '" aria-label="Favorito">' +
             '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z" fill="' + (fav ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>' +
@@ -283,9 +301,13 @@
   }
 
   function desenhar() {
+    const setor = estado.filtros.setor;
+    const porSetor = (l) => (setor ? l.filter((i) => (i.setores || []).includes(setor)) : l);
     const todasEsferas = filtrarSemArea(true);
-    desenharEsferas(filtrar(todasEsferas));
-    const semArea = estado.filtros.esfera ? todasEsferas.filter((i) => esferaDe(i) === estado.filtros.esfera) : todasEsferas;
+    desenharEsferas(filtrar(porSetor(todasEsferas)));
+    const semEsfera = estado.filtros.esfera ? todasEsferas.filter((i) => esferaDe(i) === estado.filtros.esfera) : todasEsferas;
+    desenharSetores(filtrar(semEsfera));
+    const semArea = porSetor(semEsfera);
     const lista = filtrar(semArea);
     desenharChips(semArea);
     const visiveis = lista.slice(0, estado.pagina * POR_PAGINA);
@@ -350,6 +372,13 @@
     estado.pagina = 1; salvarFiltros(); desenhar();
   });
 
+  el.setores.addEventListener("click", (ev) => {
+    const b = ev.target.closest(".chip");
+    if (!b) return;
+    estado.filtros.setor = b.dataset.setor === estado.filtros.setor ? "" : b.dataset.setor;
+    estado.pagina = 1; salvarFiltros(); desenhar();
+  });
+
   el.areas.addEventListener("click", (ev) => {
     const b = ev.target.closest(".chip");
     if (!b) return;
@@ -396,7 +425,7 @@
     el.btnFiltros.setAttribute("aria-expanded", String(abrir));
   });
   $("btn-limpar").addEventListener("click", () => {
-    estado.filtros = { areas: [], fonte: "", tipo: estado.filtros.tipo, periodo: "30", periodoLeis: "tudo", esfera: "", mostrar: "todos", esconderOutros: true, busca: "" };
+    estado.filtros = { areas: [], fonte: "", tipo: estado.filtros.tipo, periodo: "30", periodoLeis: "tudo", esfera: "", setor: "", mostrar: "todos", esconderOutros: true, busca: "" };
     el.busca.value = "";
     aplicarFiltrosNaTela(); el.fonte.value = ""; aoMudarFiltro();
   });
