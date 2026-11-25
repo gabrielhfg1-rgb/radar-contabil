@@ -67,6 +67,7 @@ A partir daí, o robô roda sozinho a cada 3 horas.
 ## 3. Como usar o painel
 
 - **Notícias / Leis e projetos:** as duas abas no topo separam as notícias do dia a dia dos projetos de lei da Câmara. Na aba de leis, o período padrão é "Todo o histórico" e a ementa aparece inteira, agrupada pelo mês em que o projeto foi apresentado.
+- **Esferas:** acima da lista, escolha de onde vem a informação: Câmara dos Deputados, Senado Federal, STF, Estadual, Municipal ou Portais e Receita. Na aba de leis, os projetos do Senado mostram também a situação atual (ex.: aguardando despacho, transformada em norma jurídica).
 - **Áreas:** toque nas etiquetas coloridas no topo. Dá para escolher mais de uma. "Todas" limpa a escolha.
 - **Busca:** digite uma palavra (acentos não importam).
 - **Botão de filtros (☰):** escolha *Mostrar* (todos, só novos, não lidos, favoritos), *Período* e *Fonte*, e se quer esconder os itens "Outros".
@@ -113,6 +114,8 @@ Abra `fontes.json` e clique no lápis. Cada fonte é uma linha assim:
 - **Desligar:** troque `"ativo": true` por `"ativo": false`.
 - **Fontes muito gerais** (que falam de tudo, como Conjur): acrescente `"somente_com_area": true` e só entram as notícias que caírem em alguma área.
 - **Buscas do STF:** o STF tem um feed por palavra pesquisada. Para acompanhar outro assunto, copie uma linha do STF e troque a palavra depois de `?s=` (use `+` no lugar de espaço), por exemplo `https://noticias.stf.jus.br/?s=ITCMD&feed=rss2`.
+- **Esfera de cada fonte:** o campo `"esfera"` diz em qual botão a fonte aparece: `camara`, `senado`, `stf`, `estadual`, `municipal` ou `geral`. Ao adicionar uma fonte de uma Assembleia Legislativa ou Câmara de Vereadores, use `estadual` ou `municipal`.
+- **Projetos de lei da Câmara e do Senado:** as fontes `"tipo": "camara"` e `"tipo": "senado"` usam as APIs oficiais. Edite a lista `"termos"` para mudar as buscas.
 - **Projetos de lei da Câmara:** na fonte `"tipo": "camara"`, a lista `"termos"` diz quais buscas são feitas. Cada termo vira uma busca na API oficial. `"tipos"` escolhe os tipos de proposição (PL, PLP, PEC, MPV, PDL).
 
 Depois de salvar, rode o robô na hora pela aba **Actions → Coletar e publicar → Run workflow** e confira em **Situação das fontes** se a nova fonte funcionou.

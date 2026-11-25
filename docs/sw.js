@@ -1,8 +1,8 @@
 /* Service worker: deixa o painel abrir rápido e funcionar sem internet
    (mostra a última versão baixada). Ao mudar arquivos do painel, aumente a VERSAO. */
-const VERSAO = "radar-v3";
+const VERSAO = "radar-v4";
 const ARQUIVOS = [
-  "./", "index.html", "estilo.css?v=3", "app.js?v=3", "manifest.webmanifest",
+  "./", "index.html", "estilo.css?v=4", "app.js?v=4", "manifest.webmanifest",
   "icones/icone.svg", "icones/icone-192.png", "icones/icone-512.png",
 ];
 

@@ -13,7 +13,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -136,7 +136,49 @@ def _data_camara(p):
     return ler_data(p.get("dataApresentacao") or "")
 
 
-COLETORES = {"feed": coletar_feed, "camara": coletar_camara}
+def coletar_senado(fonte):
+    """API de dados abertos do Senado (/processo). Traz tambem a situacao atual."""
+    itens = []
+    tipos = set(fonte.get("tipos") or [])
+    desde = (datetime.now(timezone.utc) - timedelta(days=int(fonte.get("dias", 365)))).strftime("%Y-%m-%d")
+    falhas = []
+    inicio = time.monotonic()
+    for termo in fonte.get("termos", []):
+        if time.monotonic() - inicio > 300:
+            falhas.append(f"{termo}: tempo esgotado")
+            continue
+        params = urllib.parse.urlencode({"termo": termo, "dataInicioApresentacao": desde})
+        try:
+            dados = json.loads(baixar(f"{fonte['url']}?{params}", tentativas=2, accept="application/json"))
+        except Exception as e:  # noqa: BLE001
+            falhas.append(f"{termo}: {type(e).__name__}")
+            continue
+        for p in dados if isinstance(dados, list) else []:
+            ident = (p.get("identificacao") or "").strip()
+            if not ident or (tipos and ident.split(" ")[0] not in tipos):
+                continue
+            codigo = p.get("codigoMateria") or p.get("id")
+            itens.append({
+                "titulo": ident,
+                "link": f"https://www25.senado.leg.br/web/atividade/materias/-/materia/{codigo}",
+                "resumo": resumir(p.get("ementa") or "", LIMITE_EMENTA),
+                "data": ler_data(p.get("dataApresentacao") or ""),
+                "categorias_fonte": [termo],
+                "tipo": "projeto",
+                "situacao": (p.get("situacaoAtual") or "").strip().capitalize(),
+            })
+        time.sleep(PAUSA_ENTRE_REQUISICOES)
+    if falhas and not itens:
+        raise RuntimeError("todas as buscas falharam: " + "; ".join(falhas))
+    if falhas:
+        print("       buscas com erro: " + "; ".join(falhas))
+    return itens
+
+
+COLETORES = {"feed": coletar_feed, "camara": coletar_camara, "senado": coletar_senado}
+
+# Nomes antigos de fontes, para atualizar itens ja coletados
+RENOMEAR_FONTES = {"Câmara — Projetos de Lei": "Câmara dos Deputados"}
 
 
 # ---------------------------------------------------------------- historico
@@ -184,7 +226,9 @@ def _gravar(caminho, dados, compacto=False):
 
 def main():
     with open(ARQ_FONTES, encoding="utf-8") as f:
-        fontes = [x for x in json.load(f)["fontes"] if x.get("ativo", True)]
+        todas_fontes = json.load(f)["fontes"]
+    fontes = [x for x in todas_fontes if x.get("ativo", True)]
+    esfera_da_fonte = {x["nome"]: x.get("esfera", "geral") for x in todas_fontes}
     with open(RAIZ / "categorias.json", encoding="utf-8") as f:
         cat_config = json.load(f)
     classificador = Classificador(cat_config)
@@ -207,8 +251,10 @@ def main():
                     continue
                 iid = id_do_link(item["link"])
                 if iid in historico:
-                    if item["tipo"] == "projeto":  # atualiza a ementa (antes era cortada)
+                    if item["tipo"] == "projeto":  # atualiza ementa e situacao
                         historico[iid]["resumo"] = item["resumo"]
+                        if item.get("situacao"):
+                            historico[iid]["situacao"] = item["situacao"]
                     continue
                 if not item["data"] or item["data"] > agora:
                     item["data"] = agora
@@ -225,6 +271,8 @@ def main():
 
     # Reclassifica tudo: se voce mudar categorias.json, os itens antigos se ajustam tambem.
     for item in historico.values():
+        item["fonte"] = RENOMEAR_FONTES.get(item["fonte"], item["fonte"])
+        item["esfera"] = esfera_da_fonte.get(item["fonte"], "geral")
         item["resumo"] = resumir(item.get("resumo", ""), LIMITE_EMENTA if item.get("tipo") == "projeto" else 280)
         item["areas"] = classificador.classificar(item["titulo"], item["resumo"], *item.get("categorias_fonte", []))
 

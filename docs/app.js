@@ -28,7 +28,7 @@
     visitaAnterior: null,
     pagina: 1,
     filtros: Object.assign(
-      { areas: [], fonte: "", tipo: "noticia", periodo: "30", periodoLeis: "tudo", mostrar: "todos", esconderOutros: true, busca: "" },
+      { areas: [], fonte: "", tipo: "noticia", periodo: "30", periodoLeis: "tudo", esfera: "", mostrar: "todos", esconderOutros: true, busca: "" },
       guardar.ler("filtros", {}),
       { busca: "" }
     ),
@@ -54,7 +54,7 @@
     atualizado: $("atualizado"), areas: $("areas"), busca: $("busca"), lista: $("lista"),
     mais: $("btn-mais"), vazio: $("vazio"), resumo: $("resumo-lista"), painel: $("painel-filtros"),
     btnFiltros: $("btn-filtros"), contadorFiltros: $("contador-filtros"), fonte: $("f-fonte"),
-    abas: $("abas"), rotuloFonte: $("rotulo-fonte"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
+    abas: $("abas"), esferas: $("esferas"), rotuloFonte: $("rotulo-fonte"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
     fontesStatus: $("fontes-status"),
   };
 
@@ -81,6 +81,11 @@
     PL: "Projeto de Lei", PLP: "Projeto de Lei Complementar", PEC: "Proposta de Emenda à Constituição",
     MPV: "Medida Provisória", PDL: "Projeto de Decreto Legislativo",
   };
+  const ESFERAS = [
+    ["camara", "Câmara dos Deputados"], ["senado", "Senado Federal"], ["stf", "STF"],
+    ["estadual", "Estadual"], ["municipal", "Municipal"], ["geral", "Portais e Receita"],
+  ];
+  function esferaDe(i) { return i.esfera || (i.fonte === "STF" ? "stf" : "geral"); }
   function ehLeis() { return estado.filtros.tipo === "projeto"; }
   function periodoAtual() { return ehLeis() ? estado.filtros.periodoLeis : estado.filtros.periodo; }
   function rotuloMes(iso) {
@@ -188,7 +193,7 @@
   }
 
   // ---------- filtrar ----------
-  function filtrarSemArea() {
+  function filtrarSemArea(ignorarEsfera) {
     const f = estado.filtros;
     let base = estado.itens;
     if (f.mostrar === "favoritos") {
@@ -206,6 +211,7 @@
     return base.filter((i) => {
       if (desde && f.mostrar !== "favoritos" && i.data < desde) return false;
       if (f.fonte && !ehLeis() && i.fonte !== f.fonte) return false;
+      if (!ignorarEsfera && f.esfera && esferaDe(i) !== f.esfera) return false;
       if (f.tipo && i.tipo !== f.tipo) return false;
       if (f.mostrar === "novos" && !ehNovo(i)) return false;
       if (f.mostrar === "naolidos" && estado.lidos.has(i.id)) return false;
@@ -225,6 +231,19 @@
   }
 
   // ---------- desenhar ----------
+  function desenharEsferas(lista) {
+    const conta = {};
+    lista.forEach((i) => { const e = esferaDe(i); conta[e] = (conta[e] || 0) + 1; });
+    const sel = estado.filtros.esfera;
+    let html = '<button class="esfera" data-esfera="" aria-pressed="' + !sel + '">Todas <span class="qtd">' + lista.length + "</span></button>";
+    ESFERAS.forEach(([id, nome]) => {
+      const n = conta[id] || 0;
+      html += '<button class="esfera' + (n ? "" : " vazia") + '" data-esfera="' + id + '" aria-pressed="' + (sel === id) + '"' +
+        (n || sel === id ? "" : ' title="Ainda não há itens desta esfera"') + ">" + escapar(nome) + ' <span class="qtd">' + n + "</span></button>";
+    });
+    el.esferas.innerHTML = html;
+  }
+
   function desenharChips(semArea) {
     const contagem = {};
     semArea.forEach((i) => i.areas.forEach((a) => { contagem[a] = (contagem[a] || 0) + 1; }));
@@ -252,6 +271,7 @@
         '<span class="fonte">' + escapar(i.fonte) + "</span><span>·</span><time datetime=\"" + escapar(i.data) + '">' + (i.tipo === "projeto" ? formatarData(i.data) : hora(i.data)) + "</time>" +
       "</div>" +
       '<a class="item-titulo" href="' + escapar(linkSeguro(i.link)) + '" target="_blank" rel="noopener noreferrer">' + escapar(i.titulo) + "</a>" +
+      (i.situacao ? '<p class="situacao">Situação: <strong>' + escapar(i.situacao) + "</strong></p>" : "") +
       (i.resumo ? '<p class="item-resumo">' + escapar(i.resumo) + "</p>" : "") +
       '<div class="item-rodape"><div class="etiquetas">' + etiquetas + "</div>" +
         '<div class="acoes">' +
@@ -263,7 +283,9 @@
   }
 
   function desenhar() {
-    const semArea = filtrarSemArea();
+    const todasEsferas = filtrarSemArea(true);
+    desenharEsferas(filtrar(todasEsferas));
+    const semArea = estado.filtros.esfera ? todasEsferas.filter((i) => esferaDe(i) === estado.filtros.esfera) : todasEsferas;
     const lista = filtrar(semArea);
     desenharChips(semArea);
     const visiveis = lista.slice(0, estado.pagina * POR_PAGINA);
@@ -321,6 +343,13 @@
     if (a) { const li = a.closest(".item"); marcarLido(li.dataset.id, true); li.classList.add("lido"); }
   });
 
+  el.esferas.addEventListener("click", (ev) => {
+    const b = ev.target.closest(".esfera");
+    if (!b) return;
+    estado.filtros.esfera = b.dataset.esfera === estado.filtros.esfera ? "" : b.dataset.esfera;
+    estado.pagina = 1; salvarFiltros(); desenhar();
+  });
+
   el.areas.addEventListener("click", (ev) => {
     const b = ev.target.closest(".chip");
     if (!b) return;
@@ -367,7 +396,7 @@
     el.btnFiltros.setAttribute("aria-expanded", String(abrir));
   });
   $("btn-limpar").addEventListener("click", () => {
-    estado.filtros = { areas: [], fonte: "", tipo: estado.filtros.tipo, periodo: "30", periodoLeis: "tudo", mostrar: "todos", esconderOutros: true, busca: "" };
+    estado.filtros = { areas: [], fonte: "", tipo: estado.filtros.tipo, periodo: "30", periodoLeis: "tudo", esfera: "", mostrar: "todos", esconderOutros: true, busca: "" };
     el.busca.value = "";
     aplicarFiltrosNaTela(); el.fonte.value = ""; aoMudarFiltro();
   });
