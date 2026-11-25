@@ -796,7 +796,7 @@
       "uf": "PE",
       "municipio": "Recife/PE",
       "tipo": "google_noticias",
-      "busca": "\"Prefeitura de Recife\" (ISS OR IPTU OR ITBI OR \"nota fiscal\" OR Refis OR alvará OR \"taxa de licença\")",
+      "busca": "(\"Prefeitura do Recife\" OR \"Prefeitura de Recife\") (ISS OR IPTU OR ITBI OR \"nota fiscal\" OR Refis OR alvará OR \"taxa de licença\")",
       "excluir": [
         "concurso",
         "gabarito",
@@ -826,7 +826,7 @@
       "uf": "RJ",
       "municipio": "Rio de Janeiro/RJ",
       "tipo": "google_noticias",
-      "busca": "\"Prefeitura de Rio de Janeiro\" (ISS OR IPTU OR ITBI OR \"nota fiscal\" OR Refis OR alvará OR \"taxa de licença\")",
+      "busca": "(\"Prefeitura do Rio\" OR \"Prefeitura do Rio de Janeiro\") (ISS OR IPTU OR ITBI OR \"nota fiscal\" OR Refis OR alvará OR \"taxa de licença\")",
       "excluir": [
         "concurso",
         "gabarito",
