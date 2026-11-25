@@ -23,7 +23,7 @@ from leitor_feeds import ler_data, ler_feed, resumir  # noqa: E402
 RAIZ = Path(__file__).resolve().parent.parent
 PASTA_DADOS = Path(os.environ.get("RADAR_DADOS", RAIZ / "docs" / "dados"))
 ARQ_FONTES = Path(os.environ.get("RADAR_FONTES", RAIZ / "fontes.json"))
-USER_AGENT = "RadarContabil/1.0 (robo de leitura de feeds; uso interno de escritorio contabil)"
+USER_AGENT = "Mozilla/5.0 (compatible; RadarContabil/1.0; robo de leitura de feeds de escritorio contabil)"
 PAUSA_ENTRE_REQUISICOES = 1.5  # segundos, para nao sobrecarregar as fontes
 TEMPO_LIMITE = 30
 
@@ -34,13 +34,14 @@ def agora_iso():
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def baixar(url, tentativas=2):
+def baixar(url, tentativas=3, accept="application/rss+xml, application/xml, text/xml, */*"):
     erro = None
     for n in range(tentativas):
         try:
             req = urllib.request.Request(url, headers={
                 "User-Agent": USER_AGENT,
-                "Accept": "application/rss+xml, application/xml, application/json, text/xml, */*",
+                "Accept": accept,
+                "Accept-Language": "pt-BR,pt;q=0.9",
             })
             with urllib.request.urlopen(req, timeout=TEMPO_LIMITE) as resp:
                 return resp.read()
@@ -91,7 +92,7 @@ def coletar_camara(fonte):
         params = urllib.parse.urlencode({
             "keywords": termo, "ordem": "DESC", "ordenarPor": "id", "itens": 50,
         })
-        dados = json.loads(baixar(f"{fonte['url']}?{params}"))
+        dados = json.loads(baixar(f"{fonte['url']}?{params}", accept="application/json"))
         for p in dados.get("dados", []):
             if tipos and p.get("siglaTipo") not in tipos:
                 continue
