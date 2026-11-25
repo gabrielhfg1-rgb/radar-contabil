@@ -43,8 +43,16 @@ def baixar(url, tentativas=3, accept="application/rss+xml, application/xml, text
                 "Accept": accept,
                 "Accept-Language": "pt-BR,pt;q=0.9",
             })
+            limite = time.monotonic() + TEMPO_LIMITE * 2  # prazo total por download
+            partes = []
             with urllib.request.urlopen(req, timeout=TEMPO_LIMITE) as resp:
-                return resp.read()
+                while True:
+                    bloco = resp.read(65536)
+                    if not bloco:
+                        return b"".join(partes)
+                    partes.append(bloco)
+                    if time.monotonic() > limite:
+                        raise TimeoutError("download lento demais")
         except Exception as e:  # noqa: BLE001 — qualquer falha vira registro, nao derruba o robo
             erro = e
             if n + 1 < tentativas:
@@ -88,11 +96,20 @@ def coletar_feed(fonte):
 def coletar_camara(fonte):
     itens = []
     tipos = set(fonte.get("tipos") or [])
+    falhas = []
+    inicio = time.monotonic()
     for termo in fonte.get("termos", []):
+        if time.monotonic() - inicio > 300:  # no maximo 5 minutos para esta fonte
+            falhas.append(f"{termo}: tempo esgotado")
+            continue
         params = urllib.parse.urlencode({
             "keywords": termo, "ordem": "DESC", "ordenarPor": "id", "itens": 50,
         })
-        dados = json.loads(baixar(f"{fonte['url']}?{params}", accept="application/json"))
+        try:
+            dados = json.loads(baixar(f"{fonte['url']}?{params}", tentativas=2, accept="application/json"))
+        except Exception as e:  # noqa: BLE001 — um termo com erro nao derruba os outros
+            falhas.append(f"{termo}: {type(e).__name__}")
+            continue
         for p in dados.get("dados", []):
             if tipos and p.get("siglaTipo") not in tipos:
                 continue
@@ -106,6 +123,10 @@ def coletar_camara(fonte):
                 "tipo": "projeto",
             })
         time.sleep(PAUSA_ENTRE_REQUISICOES)
+    if falhas and not itens:
+        raise RuntimeError("todas as buscas falharam: " + "; ".join(falhas))
+    if falhas:
+        print("       buscas com erro: " + "; ".join(falhas))
     return itens
 
 
