@@ -1,5 +1,5 @@
 {
- "atualizado_em": "2026-11-25T17:31:17Z",
+ "atualizado_em": "2026-11-25T17:33:36Z",
  "meses": [
   "2026-11",
   "2026-10",
@@ -94,15 +94,15 @@
   {
    "nome": "Contábeis",
    "url": "https://www.contabeis.com.br/rss/noticias/",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 30,
-   "novos": 1
+   "novos": 0
   },
   {
    "nome": "Contábeis",
    "url": "https://www.contabeis.com.br/rss/conteudo/",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 30,
    "novos": 0
@@ -110,14 +110,14 @@
   {
    "nome": "Receita Federal",
    "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": false,
    "erro": "URLError: <urlopen error [Errno 104] Connection reset by peer>"
   },
   {
    "nome": "Agência Senado",
    "url": "https://www12.senado.leg.br/noticias/rss",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 15,
    "novos": 0
@@ -125,7 +125,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/ECONOMIA",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -133,7 +133,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/TRABALHO-E-PREVIDENCIA",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 0,
    "novos": 0
@@ -141,7 +141,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/INDUSTRIA-E-COMERCIO",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 0,
    "novos": 0
@@ -149,7 +149,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/ADMINISTRACAO-PUBLICA",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -157,7 +157,7 @@
   {
    "nome": "Conjur",
    "url": "https://www.conjur.com.br/feed/",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -165,15 +165,15 @@
   {
    "nome": "Jornal Contábil",
    "url": "https://www.jornalcontabil.com.br/feed/",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 10,
-   "novos": 1
+   "novos": 0
   },
   {
    "nome": "Câmara — Projetos de Lei",
    "url": "https://dadosabertos.camara.leg.br/api/v2/proposicoes",
-   "quando": "2026-11-25T17:29:50Z",
+   "quando": "2026-11-25T17:32:08Z",
    "ok": true,
    "lidos": 137,
    "novos": 0
