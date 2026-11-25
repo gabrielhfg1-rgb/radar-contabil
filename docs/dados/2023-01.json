@@ -1,0 +1,4 @@
+[
+{"areas": ["fiscal"], "categorias_fonte": [], "coletado_em": "2026-11-25T17:03:02Z", "data": "2023-01-16T11:47:34Z", "fonte": "Receita Federal", "id": "3db768f105b77dff", "link": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/todas-as-noticias", "resumo": "Todas as notícias da Receita Federal.", "tipo": "noticia", "titulo": "Todas as notícias"},
+{"areas": ["outros"], "categorias_fonte": [], "coletado_em": "2026-11-25T17:03:02Z", "data": "2023-01-02T19:11:00Z", "fonte": "Receita Federal", "id": "b1e9162c9807a62d", "link": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2023", "resumo": "", "tipo": "noticia", "titulo": "2023"}
+]
