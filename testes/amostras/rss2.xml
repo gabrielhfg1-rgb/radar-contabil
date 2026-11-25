@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel><title>Exemplo</title>
+<item><title><![CDATA[Reforma Tributária: CBS e IBS começam em 2026]]></title>
+<link>https://www.exemplo.com.br/noticias/reforma?utm_source=rss</link>
+<description><![CDATA[<p>O Comitê Gestor publicou &amp; detalhou regras <b>novas</b>.</p>]]></description>
+<category><![CDATA[Tributário]]></category>
+<pubDate>Tue, 24 Nov 2026 10:30:00 -0300</pubDate></item>
+<item><title>Festival de música na cidade</title><link>https://www.exemplo.com.br/noticias/festival</link>
+<description>Evento cultural.</description><pubDate>Tue, 24 Nov 2026 09:00:00 GMT</pubDate></item>
+</channel></rss>

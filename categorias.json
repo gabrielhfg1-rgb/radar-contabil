@@ -1,0 +1,159 @@
+{
+  "_instrucoes": "Edite as palavras-chave entre aspas, separadas por virgula. Acentos e maiusculas nao importam. Palavras curtas (como ISS ou MEI) so contam quando aparecem como palavra inteira.",
+  "areas": [
+    {
+      "id": "fiscal",
+      "nome": "Fiscal e Tributário",
+      "cor": "#c0392b",
+      "palavras": [
+        "IBS",
+        "CBS",
+        "Imposto Seletivo",
+        "reforma tributária",
+        "ICMS",
+        "ISS",
+        "ISSQN",
+        "PIS",
+        "Cofins",
+        "IPI",
+        "IRPJ",
+        "CSLL",
+        "Simples Nacional",
+        "Lucro Presumido",
+        "Lucro Real",
+        "split payment",
+        "NF-e",
+        "NFS-e",
+        "nota fiscal",
+        "SPED",
+        "EFD",
+        "DCTF",
+        "CARF",
+        "transação tributária",
+        "Receita Federal",
+        "imposto de renda",
+        "IRPF",
+        "tributo",
+        "tributário",
+        "tributária",
+        "tributação",
+        "tributos"
+      ]
+    },
+    {
+      "id": "pessoal",
+      "nome": "Departamento Pessoal / Trabalhista",
+      "cor": "#2471a3",
+      "palavras": [
+        "eSocial",
+        "FGTS",
+        "INSS",
+        "CLT",
+        "folha de pagamento",
+        "férias",
+        "13º salário",
+        "décimo terceiro",
+        "13 salário",
+        "rescisão",
+        "escala 6x1",
+        "salário mínimo",
+        "previdência",
+        "previdenciário",
+        "DCTFWeb",
+        "FGTS Digital",
+        "convenção coletiva",
+        "trabalhista",
+        "aviso prévio",
+        "jornada de trabalho"
+      ]
+    },
+    {
+      "id": "societario",
+      "nome": "Societário e Holdings",
+      "cor": "#7d3c98",
+      "palavras": [
+        "holding",
+        "planejamento sucessório",
+        "ITCMD",
+        "herança",
+        "doação",
+        "integralização de capital",
+        "quotas",
+        "contrato social",
+        "sociedade limitada",
+        "dividendos",
+        "JCP",
+        "juros sobre capital próprio",
+        "sucessão empresarial"
+      ]
+    },
+    {
+      "id": "abertura",
+      "nome": "Abertura e Legalização de Empresas",
+      "cor": "#1e8449",
+      "palavras": [
+        "CNPJ",
+        "abertura de empresa",
+        "abrir empresa",
+        "MEI",
+        "microempreendedor",
+        "Redesim",
+        "junta comercial",
+        "alvará",
+        "inscrição estadual",
+        "inscrição municipal",
+        "baixa de empresa",
+        "CNAE"
+      ]
+    },
+    {
+      "id": "normas",
+      "nome": "Contabilidade e Normas",
+      "cor": "#b9770e",
+      "palavras": [
+        "CFC",
+        "CRC",
+        "IFRS",
+        "NBC",
+        "ECD",
+        "ECF",
+        "balanço patrimonial",
+        "balanço",
+        "demonstrações contábeis",
+        "demonstrações financeiras",
+        "auditoria",
+        "contador",
+        "contadores",
+        "contabilidade",
+        "Comitê de Pronunciamentos Contábeis",
+        "pronunciamento técnico"
+      ]
+    },
+    {
+      "id": "cambio",
+      "nome": "Câmbio e Mercado Financeiro",
+      "cor": "#117a65",
+      "palavras": [
+        "câmbio",
+        "cambial",
+        "Banco Central",
+        "BCB",
+        "hedge",
+        "derivativos",
+        "IOF",
+        "capitais estrangeiros",
+        "remessa ao exterior",
+        "moeda estrangeira",
+        "CVM",
+        "dólar",
+        "Selic",
+        "Copom"
+      ]
+    }
+  ],
+  "outros": {
+    "id": "outros",
+    "nome": "Outros",
+    "cor": "#7f8c8d"
+  }
+}

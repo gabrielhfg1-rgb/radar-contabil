@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Atom</title>
+<entry><title>Banco Central altera regras de câmbio</title><link rel="alternate" href="https://exemplo.org/cambio"/>
+<summary>Novas regras para remessa ao exterior.</summary><updated>2026-11-20T12:00:00Z</updated><category term="Economia"/></entry>
+</feed>

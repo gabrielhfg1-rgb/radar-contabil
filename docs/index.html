@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Radar Contábil</title>
+  <meta name="description" content="Notícias e projetos de lei para escritórios de contabilidade, filtrados por área.">
+  <meta name="theme-color" content="#0f3d5e">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icones/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icones/icone-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Radar Contábil">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo-linha">
+      <div class="marca">
+        <img src="icones/icone.svg" alt="" width="28" height="28">
+        <div>
+          <h1>Radar Contábil</h1>
+          <p id="atualizado" class="sutil">Carregando…</p>
+        </div>
+      </div>
+      <button id="btn-filtros" class="btn-icone" aria-expanded="false" aria-controls="painel-filtros" title="Filtros">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        <span id="contador-filtros" class="bolinha" hidden></span>
+      </button>
+    </div>
+    <div class="busca">
+      <input id="busca" type="search" placeholder="Buscar palavra (ex.: Simples, eSocial, ITCMD)" autocomplete="off" enterkeyhint="search">
+    </div>
+    <nav id="areas" class="chips" aria-label="Áreas"></nav>
+  </header>
+
+  <section id="painel-filtros" class="filtros" hidden>
+    <label>Mostrar
+      <select id="f-mostrar">
+        <option value="todos">Todos</option>
+        <option value="novos">Só novos</option>
+        <option value="naolidos">Não lidos</option>
+        <option value="favoritos">Favoritos</option>
+      </select>
+    </label>
+    <label>Tipo
+      <select id="f-tipo">
+        <option value="">Notícias e projetos</option>
+        <option value="noticia">Só notícias</option>
+        <option value="projeto">Só projetos de lei</option>
+      </select>
+    </label>
+    <label>Período
+      <select id="f-periodo">
+        <option value="hoje">Hoje</option>
+        <option value="7">Últimos 7 dias</option>
+        <option value="30" selected>Últimos 30 dias</option>
+        <option value="tudo">Todo o histórico</option>
+      </select>
+    </label>
+    <label>Fonte
+      <select id="f-fonte"><option value="">Todas as fontes</option></select>
+    </label>
+    <label class="check"><input id="f-outros" type="checkbox" checked> Esconder "Outros"</label>
+    <div class="filtros-acoes">
+      <button id="btn-limpar" class="btn-texto">Limpar filtros</button>
+      <button id="btn-ler-todos" class="btn-texto">Marcar visíveis como lidos</button>
+    </div>
+  </section>
+
+  <main>
+    <p id="resumo-lista" class="sutil resumo-lista"></p>
+    <ol id="lista" class="lista"></ol>
+    <button id="btn-mais" class="btn-mais" hidden>Mostrar mais</button>
+    <p id="vazio" class="vazio" hidden>Nenhum item com esses filtros.</p>
+  </main>
+
+  <footer class="rodape">
+    <details>
+      <summary>Situação das fontes</summary>
+      <ul id="fontes-status"></ul>
+    </details>
+    <p class="sutil">Favoritos e lidos ficam salvos só neste aparelho. Cada item leva ao site original.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

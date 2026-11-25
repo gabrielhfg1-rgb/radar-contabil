@@ -1,0 +1,66 @@
+# Roda o coletor a cada 3 horas, salva os dados no repositório e publica o painel.
+name: Coletar e publicar
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # a cada 3 horas, no minuto 17 (horário UTC)
+  workflow_dispatch:          # botão "Run workflow" para rodar na hora
+  push:
+    branches: [main]
+    paths: ["docs/**", "coletor/**", "categorias.json", "fontes.json", ".github/workflows/**"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: radar
+  cancel-in-progress: false
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Testes do classificador e do leitor
+        run: python -m unittest discover -s testes -v
+
+      - name: Coletar notícias e projetos de lei
+        run: python coletor/coletar.py
+
+      - name: Salvar os dados no repositório
+        run: |
+          git config user.name "radar-contabil-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/dados
+          if git diff --cached --quiet; then
+            echo "Nada novo para salvar."
+          else
+            git commit -m "Coleta automática $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git pull --rebase --autostash origin main
+            git push
+          fi
+
+  publicar:
+    needs: coletar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deploy
+        uses: actions/deploy-pages@v4
