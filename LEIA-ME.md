@@ -112,6 +112,7 @@ Abra `fontes.json` e clique no lápis. Cada fonte é uma linha assim:
 - **Adicionar:** copie uma linha, cole abaixo e troque `nome` e `url`. Serve qualquer endereço de **RSS** ou **Atom** (muitos sites têm em `/feed/` ou `/rss/`).
 - **Desligar:** troque `"ativo": true` por `"ativo": false`.
 - **Fontes muito gerais** (que falam de tudo, como Conjur): acrescente `"somente_com_area": true` e só entram as notícias que caírem em alguma área.
+- **Buscas do STF:** o STF tem um feed por palavra pesquisada. Para acompanhar outro assunto, copie uma linha do STF e troque a palavra depois de `?s=` (use `+` no lugar de espaço), por exemplo `https://noticias.stf.jus.br/?s=ITCMD&feed=rss2`.
 - **Projetos de lei da Câmara:** na fonte `"tipo": "camara"`, a lista `"termos"` diz quais buscas são feitas. Cada termo vira uma busca na API oficial. `"tipos"` escolhe os tipos de proposição (PL, PLP, PEC, MPV, PDL).
 
 Depois de salvar, rode o robô na hora pela aba **Actions → Coletar e publicar → Run workflow** e confira em **Situação das fontes** se a nova fonte funcionou.
