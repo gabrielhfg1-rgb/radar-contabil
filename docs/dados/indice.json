@@ -1,5 +1,5 @@
 {
- "atualizado_em": "2026-11-25T19:14:25Z",
+ "atualizado_em": "2026-11-25T21:45:07Z",
  "meses": [
   "2026-11",
   "2026-10",
@@ -50,7 +50,7 @@
   "2009-02",
   "2005-04"
  ],
- "total": 1042,
+ "total": 1140,
  "areas": [
   {
    "id": "fiscal",
@@ -252,39 +252,38 @@
   {
    "nome": "Contábeis",
    "url": "https://www.contabeis.com.br/rss/noticias/",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 30,
-   "novos": 0
+   "novos": 4
   },
   {
    "nome": "Contábeis",
    "url": "https://www.contabeis.com.br/rss/conteudo/",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 30,
-   "novos": 0
+   "novos": 2
   },
   {
    "nome": "Receita Federal",
    "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/ultimas-noticias/RSS",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 15,
-   "novos": 0
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": false,
+   "erro": "URLError: <urlopen error [Errno 104] Connection reset by peer>"
   },
   {
    "nome": "Agência Senado",
    "url": "https://www12.senado.leg.br/noticias/rss",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 15,
-   "novos": 0
+   "novos": 2
   },
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/ECONOMIA",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -292,7 +291,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/TRABALHO-E-PREVIDENCIA",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 0,
    "novos": 0
@@ -300,7 +299,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/INDUSTRIA-E-COMERCIO",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 0,
    "novos": 0
@@ -308,7 +307,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/ADMINISTRACAO-PUBLICA",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -316,15 +315,15 @@
   {
    "nome": "Conjur",
    "url": "https://www.conjur.com.br/feed/",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
-   "novos": 0
+   "novos": 2
   },
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?post_type=postsnoticias&feed=rss2",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -332,7 +331,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=tribut%C3%A1rio&feed=rss2",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -340,7 +339,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=ICMS&feed=rss2",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -348,7 +347,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=contribui%C3%A7%C3%A3o+previdenci%C3%A1ria&feed=rss2",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -356,7 +355,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=trabalhista&feed=rss2",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -364,7 +363,7 @@
   {
    "nome": "Jornal Contábil",
    "url": "https://www.jornalcontabil.com.br/feed/",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 1
@@ -372,15 +371,15 @@
   {
    "nome": "Câmara dos Deputados",
    "url": "https://dadosabertos.camara.leg.br/api/v2/proposicoes",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 137,
-   "novos": 0
+   "lidos": 139,
+   "novos": 3
   },
   {
    "nome": "Senado Federal",
    "url": "https://legis.senado.leg.br/dadosabertos/processo",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 112,
    "novos": 0
@@ -388,23 +387,23 @@
   {
    "nome": "Estadual · AC",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Acre%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 7,
+   "lidos": 8,
    "novos": 0
   },
   {
    "nome": "Estadual · AL",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Alagoas%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 6,
-   "novos": 0
+   "lidos": 31,
+   "novos": 18
   },
   {
    "nome": "Estadual · AP",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Amap%C3%A1%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 5,
    "novos": 0
@@ -412,183 +411,183 @@
   {
    "nome": "Estadual · AM",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Amazonas%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 10,
-   "novos": 0
+   "lidos": 35,
+   "novos": 10
   },
   {
    "nome": "Estadual · BA",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Bahia%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 42,
-   "novos": 23
+   "lidos": 16,
+   "novos": 1
   },
   {
    "nome": "Estadual · CE",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Cear%C3%A1%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 13,
-   "novos": 0
-  },
-  {
-   "nome": "Estadual · DF",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Distrito+Federal%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 49,
-   "novos": 11
-  },
-  {
-   "nome": "Estadual · ES",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Esp%C3%ADrito+Santo%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 22,
-   "novos": 0
-  },
-  {
-   "nome": "Estadual · GO",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Goi%C3%A1s%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 33,
-   "novos": 0
-  },
-  {
-   "nome": "Estadual · MA",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Maranh%C3%A3o%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 51,
-   "novos": 17
-  },
-  {
-   "nome": "Estadual · MT",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Mato+Grosso%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 66,
-   "novos": 14
-  },
-  {
-   "nome": "Estadual · MS",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Mato+Grosso+do+Sul%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 55,
-   "novos": 9
-  },
-  {
-   "nome": "Estadual · MG",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Minas+Gerais%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 55,
-   "novos": 1
-  },
-  {
-   "nome": "Estadual · PA",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Par%C3%A1%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
-   "ok": true,
-   "lidos": 38,
-   "novos": 1
-  },
-  {
-   "nome": "Estadual · PB",
-   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Para%C3%ADba%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 14,
    "novos": 0
   },
   {
+   "nome": "Estadual · DF",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Distrito+Federal%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 44,
+   "novos": 1
+  },
+  {
+   "nome": "Estadual · ES",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Esp%C3%ADrito+Santo%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 23,
+   "novos": 2
+  },
+  {
+   "nome": "Estadual · GO",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Goi%C3%A1s%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 8,
+   "novos": 0
+  },
+  {
+   "nome": "Estadual · MA",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Maranh%C3%A3o%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 49,
+   "novos": 1
+  },
+  {
+   "nome": "Estadual · MT",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Mato+Grosso%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 29,
+   "novos": 2
+  },
+  {
+   "nome": "Estadual · MS",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Mato+Grosso+do+Sul%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 100,
+   "novos": 1
+  },
+  {
+   "nome": "Estadual · MG",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Minas+Gerais%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 29,
+   "novos": 1
+  },
+  {
+   "nome": "Estadual · PA",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Par%C3%A1%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 41,
+   "novos": 0
+  },
+  {
+   "nome": "Estadual · PB",
+   "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Para%C3%ADba%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
+   "quando": "2026-11-25T21:39:37Z",
+   "ok": true,
+   "lidos": 39,
+   "novos": 22
+  },
+  {
    "nome": "Estadual · PR",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Paran%C3%A1%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 53,
-   "novos": 18
+   "lidos": 22,
+   "novos": 0
   },
   {
    "nome": "Estadual · PE",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Pernambuco%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 21,
+   "lidos": 55,
    "novos": 0
   },
   {
    "nome": "Estadual · PI",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Piau%C3%AD%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 26,
-   "novos": 11
+   "lidos": 11,
+   "novos": 0
   },
   {
    "nome": "Estadual · RJ",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Rio+de+Janeiro%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 62,
-   "novos": 1
+   "lidos": 31,
+   "novos": 2
   },
   {
    "nome": "Estadual · RN",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Rio+Grande+do+Norte%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 16,
+   "lidos": 17,
    "novos": 0
   },
   {
    "nome": "Estadual · RS",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Rio+Grande+do+Sul%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 58,
+   "lidos": 23,
    "novos": 0
   },
   {
    "nome": "Estadual · RO",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Rond%C3%B4nia%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 13,
+   "lidos": 12,
    "novos": 0
   },
   {
    "nome": "Estadual · RR",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Roraima%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 10,
+   "lidos": 17,
    "novos": 0
   },
   {
    "nome": "Estadual · SC",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Santa+Catarina%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 56,
-   "novos": 0
+   "lidos": 23,
+   "novos": 2
   },
   {
    "nome": "Estadual · SP",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22S%C3%A3o+Paulo%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 52,
-   "novos": 31
+   "lidos": 27,
+   "novos": 0
   },
   {
    "nome": "Estadual · SE",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Sergipe%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 13,
    "novos": 0
@@ -596,15 +595,15 @@
   {
    "nome": "Estadual · TO",
    "url": "https://news.google.com/rss/search?q=%28Sefaz+OR+%22Secretaria+da+Fazenda%22+OR+%22Assembleia+Legislativa%22+OR+%22governo+do+estado%22%29+%22Tocantins%22+%28ICMS+OR+IPVA+OR+ITCMD+OR+imposto+OR+%22lei+estadual%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 37,
-   "novos": 1
+   "novos": 0
   },
   {
    "nome": "Municipal · Rio Branco/AC",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Rio+Branco%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 19,
    "novos": 0
@@ -612,15 +611,15 @@
   {
    "nome": "Municipal · Maceió/AL",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Macei%C3%B3%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 27,
+   "lidos": 13,
    "novos": 1
   },
   {
    "nome": "Municipal · Macapá/AP",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Macap%C3%A1%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 3,
    "novos": 0
@@ -628,23 +627,23 @@
   {
    "nome": "Municipal · Manaus/AM",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Manaus%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 46,
+   "lidos": 19,
    "novos": 0
   },
   {
    "nome": "Municipal · Salvador/BA",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Salvador%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 15,
+   "lidos": 18,
    "novos": 0
   },
   {
    "nome": "Municipal · Fortaleza/CE",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Fortaleza%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -652,23 +651,23 @@
   {
    "nome": "Municipal · Vitória/ES",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Vit%C3%B3ria%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 27,
-   "novos": 2
+   "lidos": 10,
+   "novos": 0
   },
   {
    "nome": "Municipal · Goiânia/GO",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Goi%C3%A2nia%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 37,
-   "novos": 1
+   "novos": 0
   },
   {
    "nome": "Municipal · São Luís/MA",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+S%C3%A3o+Lu%C3%ADs%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 8,
    "novos": 0
@@ -676,31 +675,31 @@
   {
    "nome": "Municipal · Cuiabá/MT",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Cuiab%C3%A1%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 15,
-   "novos": 1
+   "novos": 0
   },
   {
    "nome": "Municipal · Campo Grande/MS",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Campo+Grande%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 14,
-   "novos": 0
+   "novos": 1
   },
   {
    "nome": "Municipal · Belo Horizonte/MG",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Belo+Horizonte%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 11,
+   "lidos": 9,
    "novos": 0
   },
   {
    "nome": "Municipal · Belém/PA",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Bel%C3%A9m%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -708,7 +707,7 @@
   {
    "nome": "Municipal · João Pessoa/PB",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Jo%C3%A3o+Pessoa%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -716,23 +715,23 @@
   {
    "nome": "Municipal · Curitiba/PR",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Curitiba%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 8,
-   "novos": 1
+   "novos": 0
   },
   {
    "nome": "Municipal · Recife/PE",
    "url": "https://news.google.com/rss/search?q=%28%22Prefeitura+do+Recife%22+OR+%22Prefeitura+de+Recife%22%29+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 4,
+   "lidos": 5,
    "novos": 0
   },
   {
    "nome": "Municipal · Teresina/PI",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Teresina%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -740,15 +739,15 @@
   {
    "nome": "Municipal · Rio de Janeiro/RJ",
    "url": "https://news.google.com/rss/search?q=%28%22Prefeitura+do+Rio%22+OR+%22Prefeitura+do+Rio+de+Janeiro%22%29+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 17,
-   "novos": 4
+   "lidos": 18,
+   "novos": 1
   },
   {
    "nome": "Municipal · Natal/RN",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Natal%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 20,
    "novos": 0
@@ -756,23 +755,23 @@
   {
    "nome": "Municipal · Porto Alegre/RS",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Porto+Alegre%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 17,
-   "novos": 3
+   "novos": 0
   },
   {
    "nome": "Municipal · Porto Velho/RO",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Porto+Velho%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 12,
+   "lidos": 13,
    "novos": 0
   },
   {
    "nome": "Municipal · Boa Vista/RR",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Boa+Vista%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 9,
    "novos": 0
@@ -780,31 +779,31 @@
   {
    "nome": "Municipal · Florianópolis/SC",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Florian%C3%B3polis%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 21,
+   "lidos": 12,
    "novos": 0
   },
   {
    "nome": "Municipal · São Paulo/SP",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+S%C3%A3o+Paulo%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 31,
-   "novos": 0
+   "lidos": 55,
+   "novos": 18
   },
   {
    "nome": "Municipal · Aracaju/SE",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Aracaju%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
-   "lidos": 9,
+   "lidos": 10,
    "novos": 0
   },
   {
    "nome": "Municipal · Palmas/TO",
    "url": "https://news.google.com/rss/search?q=%22Prefeitura+de+Palmas%22+%28ISS+OR+IPTU+OR+ITBI+OR+%22nota+fiscal%22+OR+Refis+OR+alvar%C3%A1+OR+%22taxa+de+licen%C3%A7a%22%29+when%3A30d&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-   "quando": "2026-11-25T19:09:49Z",
+   "quando": "2026-11-25T21:39:37Z",
    "ok": true,
    "lidos": 9,
    "novos": 0
