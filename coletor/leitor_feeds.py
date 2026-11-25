@@ -25,6 +25,8 @@ def limpar_html(texto):
 
 def resumir(texto, limite=TAMANHO_RESUMO):
     texto = limpar_html(texto)
+    texto = re.sub(r"(?i)\s*(leia mais|saiba mais|continue lendo)( em)?:?\s*https?://\S+", "", texto)
+    texto = re.sub(r"https?://\S+", "", texto).strip()
     if len(texto) <= limite:
         return texto
     corte = texto[:limite].rsplit(" ", 1)[0]

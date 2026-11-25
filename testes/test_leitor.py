@@ -44,6 +44,9 @@ class TestLeitor(unittest.TestCase):
         texto = "palavra " * 200
         self.assertLessEqual(len(resumir(texto)), 281)
 
+    def test_tira_leia_mais(self):
+        self.assertEqual(resumir("Texto curto. Leia mais em https://x.com/a/b/"), "Texto curto.")
+
     def test_datas(self):
         self.assertEqual(ler_data("2026-11-20"), "2026-11-20T15:00:00Z")
         self.assertEqual(ler_data("2026-11-20T10:00:00"), "2026-11-20T13:00:00Z")
