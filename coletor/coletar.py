@@ -19,8 +19,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from classificador import Classificador  # noqa: E402
 from leitor_feeds import ler_data, ler_feed, resumir  # noqa: E402
-from classificador import normalizar  # noqa: E402
-from localidades import ESTADOS, RE_ESTADUAL, RE_MUNICIPAL, detectar  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
 PASTA_DADOS = Path(os.environ.get("RADAR_DADOS", RAIZ / "docs" / "dados"))
@@ -82,35 +80,6 @@ def id_do_link(link):
 
 
 # ---------------------------------------------------------------- fontes
-
-def url_da_fonte(fonte):
-    if fonte.get("tipo") == "google_noticias":
-        q = urllib.parse.quote_plus(fonte["busca"] + " when:30d")
-        return f"https://news.google.com/rss/search?q={q}&hl=pt-BR&gl=BR&ceid=BR:pt-419"
-    return fonte["url"]
-
-
-def coletar_google(fonte):
-    """Busca no Google Notícias (RSS). O titulo vem como 'Manchete - Veiculo'."""
-    itens = []
-    excluir = [normalizar(x) for x in fonte.get("excluir", [])]
-    for bruto in ler_feed(baixar(url_da_fonte(fonte))):
-        titulo, sep, veiculo = bruto["titulo"].rpartition(" - ")
-        if not sep:
-            titulo, veiculo = bruto["titulo"], ""
-        alvo = normalizar(titulo)
-        if any(x in alvo for x in excluir):
-            continue
-        itens.append({
-            "titulo": titulo.strip(),
-            "link": bruto["link"],
-            "resumo": f"Publicado por {veiculo.strip()}." if veiculo else "",
-            "data": bruto["data"],
-            "categorias_fonte": [],
-            "tipo": "noticia",
-        })
-    return itens
-
 
 def coletar_feed(fonte):
     itens = []
@@ -206,8 +175,7 @@ def coletar_senado(fonte):
     return itens
 
 
-COLETORES = {"feed": coletar_feed, "camara": coletar_camara, "senado": coletar_senado,
-             "google_noticias": coletar_google}
+COLETORES = {"feed": coletar_feed, "camara": coletar_camara, "senado": coletar_senado}
 
 # Nomes antigos de fontes, para atualizar itens ja coletados
 RENOMEAR_FONTES = {"Câmara — Projetos de Lei": "Câmara dos Deputados"}
@@ -239,7 +207,6 @@ def salvar(itens, status, classif_config):
         "total": len(itens),
         "areas": classif_config["areas_painel"],
         "setores": classif_config.get("setores_painel", []),
-        "estados": [{"uf": uf, "nome": nome} for uf, (nome, _) in sorted(ESTADOS.items(), key=lambda x: x[1][0])],
         "fontes": status,
     }
     _gravar(PASTA_DADOS / "indice.json", indice)
@@ -263,8 +230,6 @@ def main():
         todas_fontes = json.load(f)["fontes"]
     fontes = [x for x in todas_fontes if x.get("ativo", True)]
     esfera_da_fonte = {x["nome"]: x.get("esfera", "geral") for x in todas_fontes}
-    uf_da_fonte = {x["nome"]: x["uf"] for x in todas_fontes if x.get("uf")}
-    municipio_da_fonte = {x["nome"]: x["municipio"] for x in todas_fontes if x.get("municipio")}
     with open(RAIZ / "categorias.json", encoding="utf-8") as f:
         cat_config = json.load(f)
     classificador = Classificador(cat_config)
@@ -279,7 +244,7 @@ def main():
     status = []
 
     for fonte in fontes:
-        registro = {"nome": fonte["nome"], "url": url_da_fonte(fonte), "quando": agora}
+        registro = {"nome": fonte["nome"], "url": fonte["url"], "quando": agora}
         try:
             coletados = COLETORES[fonte.get("tipo", "feed")](fonte)
             novos = 0
@@ -300,29 +265,17 @@ def main():
                 historico[iid] = item
                 novos += 1
             registro.update({"ok": True, "lidos": len(coletados), "novos": novos})
-            print(f"[ok]   {fonte['nome']:<28} lidos={len(coletados):<4} novos={novos}  {registro['url'][:90]}")
+            print(f"[ok]   {fonte['nome']:<28} lidos={len(coletados):<4} novos={novos}  {fonte['url']}")
         except Exception as e:  # noqa: BLE001
             registro.update({"ok": False, "erro": f"{type(e).__name__}: {e}"[:300]})
-            print(f"[ERRO] {fonte['nome']:<28} {registro['erro']}  {registro['url'][:90]}")
+            print(f"[ERRO] {fonte['nome']:<28} {registro['erro']}  {fonte['url']}")
         status.append(registro)
-        time.sleep(PAUSA_ENTRE_REQUISICOES * (2 if fonte.get("tipo") == "google_noticias" else 1))
+        time.sleep(PAUSA_ENTRE_REQUISICOES)
 
     # Reclassifica tudo: se voce mudar categorias.json, os itens antigos se ajustam tambem.
     for item in historico.values():
         item["fonte"] = RENOMEAR_FONTES.get(item["fonte"], item["fonte"])
-        item["ufs"], item["municipios"] = detectar(item["titulo"], item["resumo"])
-        if item["fonte"] in uf_da_fonte:
-            item["ufs"] = sorted(set(item["ufs"]) | {uf_da_fonte[item["fonte"]]})
-        if item["fonte"] in municipio_da_fonte:
-            item["municipios"] = sorted(set(item["municipios"]) | {municipio_da_fonte[item["fonte"]]})
         item["esfera"] = esfera_da_fonte.get(item["fonte"], "geral")
-        if item["esfera"] == "geral":
-            # Notícia de portal sobre prefeitura/Sefaz de um lugar específico vira municipal/estadual
-            texto = normalizar(item["titulo"] + " " + item["resumo"])
-            if item["municipios"] and RE_MUNICIPAL.search(texto):
-                item["esfera"] = "municipal"
-            elif item["ufs"] and RE_ESTADUAL.search(texto):
-                item["esfera"] = "estadual"
         item["resumo"] = resumir(item.get("resumo", ""), LIMITE_EMENTA if item.get("tipo") == "projeto" else 280)
         item["areas"] = classificador.classificar(item["titulo"], item["resumo"], *item.get("categorias_fonte", []))
         item["setores"] = [x for x in class_setores.classificar(item["titulo"], item["resumo"]) if x]

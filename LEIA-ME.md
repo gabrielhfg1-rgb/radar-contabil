@@ -70,7 +70,6 @@ A partir daí, o robô roda sozinho a cada 3 horas.
 - **Esferas:** acima da lista, escolha de onde vem a informação: Câmara dos Deputados, Senado Federal, STF, Estadual, Municipal ou Portais e Receita. Na aba de leis, os projetos do Senado mostram também a situação atual (ex.: aguardando despacho, transformada em norma jurídica).
 - **Setores:** abaixo das áreas, filtre por setor econômico (Agronegócio e Rural, Comércio e Varejo, Indústria, Serviços, Construção, Saúde, Tecnologia, Transporte, Financeiro, Educação, Energia, Terceiro Setor). As palavras de cada setor ficam em `categorias.json`, na lista `"setores"`, e se editam igual às áreas.
 - **Visual:** o painel abre no visual futurista. O botão ★ no topo troca para o visual clássico (e volta). A escolha fica salva no aparelho. Também dá para abrir direto com `?tema=classico` no fim do endereço.
-- **Estado e Município:** no painel de filtros (barra lateral no computador, botão ☰ no celular) escolha um estado e, se quiser, um município. Só aparecem os estados e cidades que têm itens na aba aberta, com a quantidade ao lado. O robô descobre o local pelo texto (nome do estado, sigla como "Sefaz-SP" ou "ICMS/RJ", nome da cidade) e pelas buscas estaduais e municipais. O local aparece no cartão com 📍.
 - **Áreas:** toque nas etiquetas coloridas no topo. Dá para escolher mais de uma. "Todas" limpa a escolha.
 - **Busca:** digite uma palavra (acentos não importam).
 - **Botão de filtros (☰):** escolha *Mostrar* (todos, só novos, não lidos, favoritos), *Período* e *Fonte*, e se quer esconder os itens "Outros".
@@ -120,9 +119,6 @@ Abra `fontes.json` e clique no lápis. Cada fonte é uma linha assim:
 - **Esfera de cada fonte:** o campo `"esfera"` diz em qual botão a fonte aparece: `camara`, `senado`, `stf`, `estadual`, `municipal` ou `geral`. Ao adicionar uma fonte de uma Assembleia Legislativa ou Câmara de Vereadores, use `estadual` ou `municipal`.
 - **Projetos de lei da Câmara e do Senado:** as fontes `"tipo": "camara"` e `"tipo": "senado"` usam as APIs oficiais. Edite a lista `"termos"` para mudar as buscas.
 - **Projetos de lei da Câmara:** na fonte `"tipo": "camara"`, a lista `"termos"` diz quais buscas são feitas. Cada termo vira uma busca na API oficial. `"tipos"` escolhe os tipos de proposição (PL, PLP, PEC, MPV, PDL).
-
-- **Buscas por estado e capital:** as fontes `"Estadual · UF"` e `"Municipal · Capital/UF"` são buscas no Google Notícias (`"tipo": "google_noticias"`). O campo `"busca"` é o texto pesquisado, `"uf"` e `"municipio"` dizem a que local a fonte pertence e `"excluir"` descarta manchetes com essas palavras (ex.: concurso). Para acompanhar outra cidade, copie uma linha municipal e troque o nome da cidade em `busca` e `municipio`.
-- **Lista de cidades reconhecidas:** fica em `localidades.json`, no formato `"Nome da cidade/UF"`. Para o robô reconhecer uma cidade nova nas notícias, acrescente uma linha. Nomes que também são palavras comuns (ex.: Natal, Vitória, Serra) vão na lista `"ambiguos"` e só contam quando aparecem com contexto, como "Prefeitura de Natal".
 
 Depois de salvar, rode o robô na hora pela aba **Actions → Coletar e publicar → Run workflow** e confira em **Situação das fontes** se a nova fonte funcionou.
 
