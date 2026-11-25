@@ -188,7 +188,7 @@
     const f = estado.filtros;
     const estados = (estado.indice && estado.indice.estados) || [];
     el.uf.innerHTML = '<option value="">Todos os estados</option>' + estados.map((e) =>
-      '<option value="' + e.uf + '"' + (porUf[e.uf] || f.uf === e.uf ? "" : " disabled") + ">" + escapar(e.nome) + " (" + e.uf + ")" +
+      '<option value="' + e.uf + '">' + escapar(e.nome) + " (" + e.uf + ")" +
       (porUf[e.uf] ? " · " + porUf[e.uf] : "") + "</option>").join("");
     el.uf.value = f.uf;
     const muns = Object.keys(porMun).filter((m) => !f.uf || m.endsWith("/" + f.uf)).sort((a, b) => a.localeCompare(b, "pt-BR"));
@@ -345,6 +345,14 @@
     el.lista.innerHTML = html;
     el.mais.hidden = visiveis.length >= lista.length;
     el.vazio.hidden = lista.length > 0;
+    if (!lista.length) {
+      const f0 = estado.filtros;
+      el.vazio.textContent = (f0.uf || f0.municipio) && ehLeis()
+        ? "Nenhum projeto de lei federal cita este local. As novidades de leis estaduais e municipais (Assembleia, Sefaz, Prefeitura) estão na aba Notícias."
+        : (f0.uf || f0.municipio)
+          ? "Nenhuma notícia deste local com os filtros atuais. Tente aumentar o Período ou escolher \"Todas\" nas áreas e setores."
+          : "Nenhum item com esses filtros.";
+    }
     const novos = lista.filter(ehNovo).length;
     el.resumo.textContent = lista.length + (ehLeis() ? (lista.length === 1 ? " proposição" : " proposições") : (lista.length === 1 ? " notícia" : " notícias")) + (novos ? " · " + novos + " novos desde a última visita" : "");
     const f = estado.filtros;
