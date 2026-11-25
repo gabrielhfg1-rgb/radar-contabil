@@ -11,7 +11,20 @@
   <link rel="apple-touch-icon" href="icones/icone-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Radar Contábil">
-  <link rel="stylesheet" href="estilo.css?v=5">
+  <script>
+    /* Tema: ?tema=futurista ou ?tema=classico no endereço, ou o último escolhido no aparelho */
+    (function () {
+      var t = null;
+      try { t = new URLSearchParams(location.search).get("tema"); } catch (e) {}
+      try { if (t) localStorage.setItem("radar.tema", t); else t = localStorage.getItem("radar.tema"); } catch (e) {}
+      if (t === "futurista") document.documentElement.setAttribute("data-tema", "futurista");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="estilo.css?v=6">
+  <link rel="stylesheet" href="futurista.css?v=6">
 </head>
 <body>
   <header class="topo">
@@ -31,10 +44,16 @@
         <button class="aba" role="tab" data-tipo="noticia" aria-selected="true">Notícias <span class="qtd-novos" hidden></span></button>
         <button class="aba" role="tab" data-tipo="projeto" aria-selected="false">Leis e projetos <span class="qtd-novos" hidden></span></button>
       </nav>
+      <div class="topo-acoes">
+      <button id="btn-tema" class="btn-tema" title="Trocar o visual">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3l2.2 5.6L20 9l-4.5 3.8L17 19l-5-3.2L7 19l1.5-6.2L4 9l5.8-.4z" fill="currentColor"/></svg>
+        <span>Visual futurista</span>
+      </button>
       <button id="btn-filtros" class="btn-icone" aria-expanded="false" aria-controls="painel-filtros" title="Filtros">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
         <span id="contador-filtros" class="bolinha" hidden></span>
       </button>
+      </div>
     </div>
   </header>
 
@@ -94,6 +113,6 @@
     </main>
   </div>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

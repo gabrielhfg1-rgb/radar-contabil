@@ -60,8 +60,14 @@ body {
   border: 1px solid var(--borda); background: var(--fundo); color: var(--texto);
 }
 .busca input:focus { outline: 2px solid var(--primaria-texto); outline-offset: -1px; }
-.btn-icone {
-  grid-area: botao; position: relative; display: grid; place-items: center;
+.topo-acoes { grid-area: botao; display: flex; align-items: center; gap: 8px; }
+.btn-tema {
+  display: inline-flex; align-items: center; gap: 6px; height: 42px; padding: 0 12px; border-radius: 10px; cursor: pointer;
+  font: inherit; font-size: 0.82rem; border: 1px solid var(--borda); background: var(--cartao); color: var(--texto);
+}
+.btn-tema svg { color: #a78bfa; }
+@media (max-width: 520px) { .btn-tema span { display: none; } .btn-tema { width: 42px; justify-content: center; padding: 0; } }
+.btn-icone { position: relative; display: grid; place-items: center;
   width: 42px; height: 42px; border-radius: 10px;
   border: 1px solid var(--borda); background: var(--cartao); color: var(--texto); cursor: pointer;
 }
@@ -208,7 +214,7 @@ main { padding: 6px 16px 32px; min-width: 0; }
   body { font-size: 15px; }
   .topo { padding: 12px 24px; }
   .topo { padding-bottom: 0; }
-  .topo-conteudo { grid-template-columns: 260px 1fr; grid-template-areas: "marca busca" ". abas"; gap: 12px 24px; }
+  .topo-conteudo { grid-template-columns: 260px 1fr; grid-template-columns: 260px 1fr auto; grid-template-areas: "marca busca botao" ". abas abas"; gap: 12px 24px; }
   .aba { padding: 10px 2px 12px; }
   .busca { max-width: 640px; }
   .btn-icone { display: none; }

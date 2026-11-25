@@ -435,6 +435,24 @@
   });
   el.mais.addEventListener("click", () => { estado.pagina += 1; desenhar(); });
 
+  // ---------- troca de visual (clássico / futurista) ----------
+  const btnTema = $("btn-tema");
+  function rotularTema() {
+    const fut = document.documentElement.getAttribute("data-tema") === "futurista";
+    btnTema.querySelector("span").textContent = fut ? "Visual clássico" : "Visual futurista";
+    btnTema.title = fut ? "Voltar ao visual clássico" : "Experimentar o visual futurista";
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", fut ? "#05070d" : "#0f3d5e");
+  }
+  btnTema.addEventListener("click", () => {
+    const fut = document.documentElement.getAttribute("data-tema") === "futurista";
+    if (fut) document.documentElement.removeAttribute("data-tema");
+    else document.documentElement.setAttribute("data-tema", "futurista");
+    try { localStorage.setItem("radar.tema", fut ? "classico" : "futurista"); } catch (e) { /* ignora */ }
+    rotularTema();
+  });
+  rotularTema();
+
   // ---------- app instalável (funciona offline com a última versão baixada) ----------
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });

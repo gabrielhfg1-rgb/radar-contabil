@@ -1,0 +1,196 @@
+/* =====================================================================
+   Tema "Futurista" do Radar Contábil
+   Só vale quando <html data-tema="futurista">. O visual clássico continua
+   em estilo.css e não é afetado.
+   ===================================================================== */
+
+html[data-tema="futurista"] {
+  --fundo: #05070d;
+  --cartao: rgba(17, 24, 39, 0.55);
+  --texto: #e8f1ff;
+  --sutil: #8a9bb8;
+  --borda: rgba(120, 160, 255, 0.14);
+  --primaria: #22d3ee;
+  --primaria-texto: #67e8f9;
+  --realce: rgba(34, 211, 238, 0.10);
+  --novo: #f472b6;
+  --neon: #22d3ee;
+  --neon2: #a78bfa;
+  --vidro: blur(14px) saturate(140%);
+  --sombra: 0 0 0 1px rgba(120, 160, 255, 0.06), 0 10px 30px -12px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+/* ---------- fundo: grade + brilhos ---------- */
+html[data-tema="futurista"] body {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(167, 139, 250, 0.18), transparent 60%),
+    radial-gradient(800px 500px at -10% 20%, rgba(34, 211, 238, 0.14), transparent 60%),
+    linear-gradient(rgba(120, 160, 255, 0.045) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(120, 160, 255, 0.045) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--fundo);
+  background-attachment: fixed;
+}
+html[data-tema="futurista"] .sutil,
+html[data-tema="futurista"] .item-meta,
+html[data-tema="futurista"] .resumo-lista,
+html[data-tema="futurista"] .titulo-bloco,
+html[data-tema="futurista"] .dia h2,
+html[data-tema="futurista"] .qtd {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ---------- topo de vidro ---------- */
+html[data-tema="futurista"] .topo {
+  background: rgba(5, 7, 13, 0.72);
+  -webkit-backdrop-filter: var(--vidro);
+  backdrop-filter: var(--vidro);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.5), rgba(167, 139, 250, 0.5), transparent) 1;
+}
+html[data-tema="futurista"] .marca h1 {
+  font-weight: 700; letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #67e8f9, #a78bfa 70%, #f0abfc);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+html[data-tema="futurista"] .marca img {
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35), 0 0 18px rgba(34, 211, 238, 0.35);
+  animation: radar-pulso 3.2s ease-in-out infinite;
+}
+@keyframes radar-pulso {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35), 0 0 10px rgba(34, 211, 238, 0.25); }
+  50% { box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.6), 0 0 24px rgba(34, 211, 238, 0.55); }
+}
+html[data-tema="futurista"] .busca input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--borda); border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+html[data-tema="futurista"] .busca input:focus {
+  outline: none; border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15), 0 0 24px rgba(34, 211, 238, 0.15);
+}
+html[data-tema="futurista"] .btn-icone {
+  background: rgba(255, 255, 255, 0.03); border-color: var(--borda); color: var(--texto);
+}
+
+/* ---------- abas com sublinhado neon ---------- */
+html[data-tema="futurista"] .aba { letter-spacing: 0.02em; }
+html[data-tema="futurista"] .aba[aria-selected="true"] {
+  color: #fff; border-bottom-color: transparent;
+  border-image: linear-gradient(90deg, var(--neon), var(--neon2)) 1;
+  text-shadow: 0 0 14px rgba(34, 211, 238, 0.6);
+}
+html[data-tema="futurista"] .qtd-novos {
+  background: linear-gradient(90deg, #f472b6, #a78bfa); box-shadow: 0 0 12px rgba(244, 114, 182, 0.5);
+}
+
+/* ---------- barra lateral ---------- */
+html[data-tema="futurista"] .titulo-bloco { color: var(--neon); letter-spacing: 0.18em; font-size: 0.66rem; }
+html[data-tema="futurista"] .titulo-bloco::before { content: "// "; opacity: 0.6; }
+html[data-tema="futurista"] .chip {
+  background: rgba(255, 255, 255, 0.025); border-color: var(--borda);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+html[data-tema="futurista"] .chip .ponto { box-shadow: 0 0 8px var(--cor); }
+html[data-tema="futurista"] .chip:hover { background: rgba(34, 211, 238, 0.07); }
+html[data-tema="futurista"] .chip[aria-pressed="true"] {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--cor) 55%, transparent), color-mix(in srgb, var(--cor) 18%, transparent));
+  border-color: color-mix(in srgb, var(--cor) 70%, transparent);
+  box-shadow: 0 0 18px -4px var(--cor);
+}
+html[data-tema="futurista"] .chip[data-area=""][aria-pressed="true"],
+html[data-tema="futurista"] .chip[data-setor=""][aria-pressed="true"] {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.35), rgba(167, 139, 250, 0.25));
+  border-color: rgba(34, 211, 238, 0.5); box-shadow: 0 0 18px -4px var(--neon);
+}
+html[data-tema="futurista"] .filtros select {
+  background: rgba(255, 255, 255, 0.03); border-color: var(--borda); color: var(--texto);
+}
+html[data-tema="futurista"] .filtros select option { background: #0b1020; }
+html[data-tema="futurista"] .filtros .check input { accent-color: var(--neon); }
+html[data-tema="futurista"] .btn-texto { color: var(--primaria-texto); }
+html[data-tema="futurista"] .ok { color: #34d399; }
+html[data-tema="futurista"] .erro { color: #fb7185; }
+
+/* ---------- esferas: botões tipo "terminal" ---------- */
+html[data-tema="futurista"] .esfera {
+  background: rgba(255, 255, 255, 0.025); border-color: var(--borda); border-radius: 999px;
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.74rem; letter-spacing: 0.02em;
+}
+html[data-tema="futurista"] .esfera[aria-pressed="true"] {
+  background: rgba(34, 211, 238, 0.14); border-color: rgba(34, 211, 238, 0.6); color: #cffafe;
+  box-shadow: 0 0 16px -4px var(--neon), inset 0 0 12px rgba(34, 211, 238, 0.12);
+}
+html[data-tema="futurista"] .esfera[aria-pressed="true"] .qtd { color: #67e8f9; }
+
+/* ---------- cartões de vidro ---------- */
+html[data-tema="futurista"] .dia h2 { color: var(--neon); letter-spacing: 0.16em; }
+html[data-tema="futurista"] .dia h2::after {
+  content: ""; display: inline-block; vertical-align: middle; margin-left: 10px;
+  width: 80px; height: 1px; background: linear-gradient(90deg, rgba(34, 211, 238, 0.6), transparent);
+}
+html[data-tema="futurista"] .item {
+  background: linear-gradient(180deg, rgba(23, 32, 52, 0.62), rgba(12, 17, 30, 0.62));
+  -webkit-backdrop-filter: var(--vidro); backdrop-filter: var(--vidro);
+  border: 1px solid var(--borda); border-left: 1px solid var(--borda);
+  border-radius: 14px; box-shadow: var(--sombra);
+  transition: transform 0.18s ease, border-color 0.18s, box-shadow 0.18s;
+  overflow: hidden;
+}
+html[data-tema="futurista"] .item::before {
+  content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 0 3px 3px 0;
+  background: var(--cor-area); box-shadow: 0 0 12px var(--cor-area), 0 0 2px var(--cor-area);
+}
+html[data-tema="futurista"] .item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.35);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.15), 0 18px 40px -18px rgba(34, 211, 238, 0.35);
+}
+html[data-tema="futurista"] .item.lido { background: rgba(12, 17, 30, 0.35); }
+html[data-tema="futurista"] .item-meta .fonte { color: #c7d2fe; }
+html[data-tema="futurista"] .item-titulo { color: #f1f6ff; letter-spacing: 0.005em; }
+html[data-tema="futurista"] .item-titulo:hover { color: #67e8f9; text-decoration: none; text-shadow: 0 0 16px rgba(34, 211, 238, 0.45); }
+html[data-tema="futurista"] .item-resumo { color: #9fb0cc; }
+html[data-tema="futurista"] .selo-novo {
+  background: linear-gradient(90deg, #f472b6, #a78bfa); box-shadow: 0 0 10px rgba(244, 114, 182, 0.55);
+  border-radius: 999px; padding: 0 8px; letter-spacing: 0.1em;
+}
+html[data-tema="futurista"] .selo-pl {
+  border-color: rgba(167, 139, 250, 0.5); color: #ddd6fe; background: rgba(167, 139, 250, 0.08); border-radius: 999px; padding: 0 8px;
+}
+html[data-tema="futurista"] .situacao strong { color: #a5f3fc; }
+html[data-tema="futurista"] .etiqueta {
+  background: color-mix(in srgb, var(--cor) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cor) 40%, transparent);
+  color: #e2e8f0;
+}
+html[data-tema="futurista"] .etiqueta::before { box-shadow: 0 0 6px var(--cor); }
+html[data-tema="futurista"] .etiqueta.etiqueta-setor { background: none; border: 1px dashed rgba(138, 155, 184, 0.4); color: var(--sutil); }
+html[data-tema="futurista"] .acoes button:hover { background: rgba(34, 211, 238, 0.08); color: #67e8f9; }
+html[data-tema="futurista"] .acoes button[aria-pressed="true"] { color: #f472b6; filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.7)); }
+html[data-tema="futurista"] .acoes .btn-lido[aria-pressed="true"] { color: #67e8f9; filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.7)); }
+html[data-tema="futurista"] .btn-mais {
+  background: rgba(34, 211, 238, 0.06); border-color: rgba(34, 211, 238, 0.35); color: #67e8f9;
+}
+html[data-tema="futurista"] .btn-mais:hover { box-shadow: 0 0 22px -6px var(--neon); }
+
+/* Entrada suave dos cartões */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-tema="futurista"] .item { animation: surgir 0.35s ease both; }
+  @keyframes surgir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+
+/* Navegadores sem color-mix: cores fixas legíveis */
+@supports not (background: color-mix(in srgb, red 50%, transparent)) {
+  html[data-tema="futurista"] .etiqueta { background: rgba(255, 255, 255, 0.06); border-color: var(--borda); }
+  html[data-tema="futurista"] .chip[aria-pressed="true"] { background: var(--cor); }
+}
+
+html[data-tema="futurista"] .marca .sutil { font-size: 0.7rem; letter-spacing: -0.01em; }
+html[data-tema="futurista"] .btn-tema {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.10), rgba(167, 139, 250, 0.12));
+  border-color: rgba(167, 139, 250, 0.4); color: var(--texto);
+}
