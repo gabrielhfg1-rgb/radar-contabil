@@ -48,7 +48,7 @@ class TestClassificador(unittest.TestCase):
         self.assertEqual(self.c.classificar("Time vence campeonato"), ["outros"])
 
     def test_varios_textos(self):
-        self.assertIn("normas", self.c.classificar("Título neutro", "", "Contabilidade"))
+        self.assertIn("normas", self.c.classificar("Título neutro", "", "Normas contábeis"))
 
     def test_normalizar(self):
         self.assertEqual(normalizar("Câmbio: NF-e!"), " cambio nf e ")

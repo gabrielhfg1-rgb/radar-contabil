@@ -200,6 +200,7 @@ def main():
 
     # Reclassifica tudo: se voce mudar categorias.json, os itens antigos se ajustam tambem.
     for item in historico.values():
+        item["resumo"] = resumir(item.get("resumo", ""))
         item["areas"] = classificador.classificar(item["titulo"], item["resumo"], *item.get("categorias_fonte", []))
 
     cat_config["areas_painel"] = areas_painel

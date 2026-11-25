@@ -26,6 +26,8 @@ def limpar_html(texto):
 def resumir(texto, limite=TAMANHO_RESUMO):
     texto = limpar_html(texto)
     texto = re.sub(r"(?i)\s*(leia mais|saiba mais|continue lendo)( em)?:?\s*https?://\S+", "", texto)
+    texto = re.sub(r"(?is)\s*O post .{0,300}? apareceu primeiro em .*$", "", texto)  # rodape do WordPress
+    texto = re.sub(r"(?s)\s+O post [^.]*…$", "…", texto)  # rodape cortado pela metade
     texto = re.sub(r"https?://\S+", "", texto).strip()
     if len(texto) <= limite:
         return texto

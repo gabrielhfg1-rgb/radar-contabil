@@ -74,6 +74,17 @@
     if (d >= new Date(hoje - DIA)) return "ontem, " + hora;
     return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
   }
+  function rotuloDia(iso) {
+    const d = new Date(iso);
+    const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+    if (d >= hoje) return "Hoje";
+    if (d >= new Date(hoje - DIA)) return "Ontem";
+    const t = d.toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" });
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+  function hora(iso) {
+    return new Date(iso).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  }
   function ehNovo(item) {
     return !!estado.visitaAnterior && item.coletado_em > estado.visitaAnterior;
   }
@@ -217,20 +228,21 @@
     const fav = !!estado.favoritos[i.id];
     const etiquetas = i.areas.map((a) =>
       '<span class="etiqueta" style="--cor:' + escapar(estado.corDaArea[a] || "#7f8c8d") + '">' + escapar(estado.nomeDaArea[a] || a) + "</span>").join("");
-    return '<li class="item' + (lido ? " lido" : "") + '" data-id="' + escapar(i.id) + '">' +
+    const corPrincipal = estado.corDaArea[i.areas[0]] || "#7f8c8d";
+    return '<li class="item' + (lido ? " lido" : "") + '" data-id="' + escapar(i.id) + '" style="--cor-area:' + escapar(corPrincipal) + '">' +
       '<div class="item-meta">' +
         (ehNovo(i) ? '<span class="selo-novo">NOVO</span>' : "") +
         (i.tipo === "projeto" ? '<span class="selo-pl">Projeto de lei</span>' : "") +
-        '<span class="fonte">' + escapar(i.fonte) + "</span><span>·</span><time datetime=\"" + escapar(i.data) + '">' + formatarData(i.data) + "</time>" +
+        '<span class="fonte">' + escapar(i.fonte) + "</span><span>·</span><time datetime=\"" + escapar(i.data) + '">' + hora(i.data) + "</time>" +
       "</div>" +
       '<a class="item-titulo" href="' + escapar(linkSeguro(i.link)) + '" target="_blank" rel="noopener noreferrer">' + escapar(i.titulo) + "</a>" +
       (i.resumo ? '<p class="item-resumo">' + escapar(i.resumo) + "</p>" : "") +
       '<div class="item-rodape"><div class="etiquetas">' + etiquetas + "</div>" +
         '<div class="acoes">' +
           '<button class="btn-fav" aria-pressed="' + fav + '" title="' + (fav ? "Tirar dos favoritos" : "Favoritar") + '" aria-label="Favorito">' +
-            '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z" fill="' + (fav ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z" fill="' + (fav ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>' +
           '<button class="btn-lido" aria-pressed="' + lido + '" title="' + (lido ? "Marcar como não lido" : "Marcar como lido") + '" aria-label="Lido">' +
-            '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="' + (lido ? "2.6" : "1.8") + '" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="' + (lido ? "2.6" : "1.8") + '" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
         "</div></div></li>";
   }
 
@@ -239,7 +251,13 @@
     const lista = filtrar(semArea);
     desenharChips(semArea);
     const visiveis = lista.slice(0, estado.pagina * POR_PAGINA);
-    el.lista.innerHTML = visiveis.map(cartao).join("");
+    let diaAtual = "", html = "";
+    visiveis.forEach((i) => {
+      const dia = rotuloDia(i.data);
+      if (dia !== diaAtual) { diaAtual = dia; html += '<li class="dia" aria-hidden="false"><h2>' + escapar(dia) + "</h2></li>"; }
+      html += cartao(i);
+    });
+    el.lista.innerHTML = html;
     el.mais.hidden = visiveis.length >= lista.length;
     el.vazio.hidden = lista.length > 0;
     const novos = lista.filter(ehNovo).length;
@@ -312,8 +330,8 @@
   [el.fonte, el.tipo, el.periodo, el.mostrar, el.outros].forEach((c) => c.addEventListener("change", aoMudarFiltro));
 
   el.btnFiltros.addEventListener("click", () => {
-    const abrir = el.painel.hidden;
-    el.painel.hidden = !abrir;
+    const abrir = !el.painel.classList.contains("aberto");
+    el.painel.classList.toggle("aberto", abrir);
     el.btnFiltros.setAttribute("aria-expanded", String(abrir));
   });
   $("btn-limpar").addEventListener("click", () => {
