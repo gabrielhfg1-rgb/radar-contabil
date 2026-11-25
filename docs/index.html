@@ -5,26 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Radar Contábil</title>
   <meta name="description" content="Notícias e projetos de lei para escritórios de contabilidade, filtrados por área.">
-  <meta name="theme-color" content="#0f3d5e">
+  <meta name="theme-color" content="#05070d">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icones/icone.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icones/icone-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Radar Contábil">
   <script>
-    /* Tema: ?tema=futurista ou ?tema=classico no endereço, ou o último escolhido no aparelho */
+    /* Tema: futurista é o padrão; ?tema=classico (ou o botão ★) volta ao visual clássico */
     (function () {
       var t = null;
       try { t = new URLSearchParams(location.search).get("tema"); } catch (e) {}
       try { if (t) localStorage.setItem("radar.tema", t); else t = localStorage.getItem("radar.tema"); } catch (e) {}
-      if (t === "futurista") document.documentElement.setAttribute("data-tema", "futurista");
+      if (t !== "classico") document.documentElement.setAttribute("data-tema", "futurista");
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="estilo.css?v=6">
-  <link rel="stylesheet" href="futurista.css?v=6">
+  <link rel="stylesheet" href="estilo.css?v=7">
+  <link rel="stylesheet" href="futurista.css?v=7">
 </head>
 <body>
   <header class="topo">
@@ -113,6 +113,6 @@
     </main>
   </div>
 
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
