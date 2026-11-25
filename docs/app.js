@@ -182,8 +182,8 @@
     const doTipo = estado.itens.filter((i) => i.tipo === estado.filtros.tipo);
     const porUf = {}, porMun = {};
     doTipo.forEach((i) => {
-      (i.ufs || []).forEach((u) => { porUf[u] = (porUf[u] || 0) + 1; });
-      (i.municipios || []).forEach((m) => { porMun[m] = (porMun[m] || 0) + 1; });
+      if (i.esfera === "estadual") (i.ufs || []).forEach((u) => { porUf[u] = (porUf[u] || 0) + 1; });
+      if (i.esfera === "municipal") (i.municipios || []).forEach((m) => { porMun[m] = (porMun[m] || 0) + 1; });
     });
     const f = estado.filtros;
     const estados = (estado.indice && estado.indice.estados) || [];
@@ -211,6 +211,8 @@
   function aplicarFiltrosNaTela() {
     el.periodo.value = periodoAtual();
     el.rotuloFonte.hidden = ehLeis();
+    el.uf.closest("label").hidden = ehLeis();
+    el.municipio.closest("label").hidden = ehLeis();
     el.abas.querySelectorAll(".aba").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tipo === estado.filtros.tipo)));
     document.body.classList.toggle("modo-leis", ehLeis());
     el.mostrar.value = estado.filtros.mostrar;
@@ -237,8 +239,12 @@
       if (desde && f.mostrar !== "favoritos" && i.data < desde) return false;
       if (f.fonte && !ehLeis() && i.fonte !== f.fonte) return false;
       if (!ignorarEsfera && f.esfera && esferaDe(i) !== f.esfera) return false;
-      if (f.uf && !(i.ufs || []).includes(f.uf)) return false;
-      if (f.municipio && !(i.municipios || []).includes(f.municipio)) return false;
+      // Estado: só itens estaduais daquele estado. Município: só itens municipais daquela cidade.
+      // Itens federais (Câmara, Senado, STF, portais) não entram nesses filtros.
+      if (!ehLeis()) {
+        if (f.municipio) { if (i.esfera !== "municipal" || !(i.municipios || []).includes(f.municipio)) return false; }
+        else if (f.uf && (i.esfera !== "estadual" || !(i.ufs || []).includes(f.uf))) return false;
+      }
       if (f.tipo && i.tipo !== f.tipo) return false;
       if (f.mostrar === "novos" && !ehNovo(i)) return false;
       if (f.mostrar === "naolidos" && estado.lidos.has(i.id)) return false;
@@ -361,7 +367,7 @@
       const b = el.abas.querySelector('[data-tipo="' + t + '"] .qtd-novos');
       b.hidden = !n; b.textContent = n + (n === 1 ? " novo" : " novos");
     });
-    const ativos = [f.uf, f.municipio, !ehLeis() && f.fonte, f.mostrar !== "todos", periodoAtual() !== (ehLeis() ? "tudo" : "30"), !f.esconderOutros].filter(Boolean).length;
+    const ativos = [!ehLeis() && f.uf, !ehLeis() && f.municipio, !ehLeis() && f.fonte, f.mostrar !== "todos", periodoAtual() !== (ehLeis() ? "tudo" : "30"), !f.esconderOutros].filter(Boolean).length;
     el.contadorFiltros.hidden = !ativos;
     el.contadorFiltros.textContent = ativos;
   }
