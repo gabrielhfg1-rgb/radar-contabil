@@ -1,5 +1,5 @@
 {
- "atualizado_em": "2026-11-25T18:06:20Z",
+ "atualizado_em": "2026-11-25T18:34:56Z",
  "meses": [
   "2026-11",
   "2026-10",
@@ -50,7 +50,7 @@
   "2009-02",
   "2005-04"
  ],
- "total": 326,
+ "total": 330,
  "areas": [
   {
    "id": "fiscal",
@@ -88,19 +88,69 @@
    "cor": "#7f8c8d"
   }
  ],
+ "setores": [
+  {
+   "id": "rural",
+   "nome": "Agronegócio e Rural"
+  },
+  {
+   "id": "varejo",
+   "nome": "Comércio e Varejo"
+  },
+  {
+   "id": "industria",
+   "nome": "Indústria"
+  },
+  {
+   "id": "servicos",
+   "nome": "Serviços e Profissionais Liberais"
+  },
+  {
+   "id": "construcao",
+   "nome": "Construção e Imobiliário"
+  },
+  {
+   "id": "saude",
+   "nome": "Saúde"
+  },
+  {
+   "id": "tecnologia",
+   "nome": "Tecnologia"
+  },
+  {
+   "id": "transporte",
+   "nome": "Transporte e Logística"
+  },
+  {
+   "id": "financeiro",
+   "nome": "Financeiro e Seguros"
+  },
+  {
+   "id": "educacao",
+   "nome": "Educação"
+  },
+  {
+   "id": "energia",
+   "nome": "Energia"
+  },
+  {
+   "id": "terceiro",
+   "nome": "Terceiro Setor"
+  }
+ ],
  "fontes": [
   {
    "nome": "Contábeis",
    "url": "https://www.contabeis.com.br/rss/noticias/",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 30,
-   "novos": 1
+   "novos": 2
   },
   {
    "nome": "Contábeis",
    "url": "https://www.contabeis.com.br/rss/conteudo/",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 30,
    "novos": 0
@@ -108,14 +158,14 @@
   {
    "nome": "Receita Federal",
    "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/ultimas-noticias/RSS",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": false,
    "erro": "URLError: <urlopen error [Errno 104] Connection reset by peer>"
   },
   {
    "nome": "Agência Senado",
    "url": "https://www12.senado.leg.br/noticias/rss",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 15,
    "novos": 0
@@ -123,15 +173,15 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/ECONOMIA",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
-   "novos": 0
+   "novos": 1
   },
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/TRABALHO-E-PREVIDENCIA",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 0,
    "novos": 0
@@ -139,7 +189,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/INDUSTRIA-E-COMERCIO",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 0,
    "novos": 0
@@ -147,7 +197,7 @@
   {
    "nome": "Agência Câmara",
    "url": "https://www.camara.leg.br/noticias/rss/dinamico/ADMINISTRACAO-PUBLICA",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -155,7 +205,7 @@
   {
    "nome": "Conjur",
    "url": "https://www.conjur.com.br/feed/",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -163,7 +213,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?post_type=postsnoticias&feed=rss2",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -171,7 +221,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=tribut%C3%A1rio&feed=rss2",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -179,7 +229,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=ICMS&feed=rss2",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -187,7 +237,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=contribui%C3%A7%C3%A3o+previdenci%C3%A1ria&feed=rss2",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -195,7 +245,7 @@
   {
    "nome": "STF",
    "url": "https://noticias.stf.jus.br/?s=trabalhista&feed=rss2",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 0
@@ -203,7 +253,7 @@
   {
    "nome": "Jornal Contábil",
    "url": "https://www.jornalcontabil.com.br/feed/",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 10,
    "novos": 1
@@ -211,7 +261,7 @@
   {
    "nome": "Câmara dos Deputados",
    "url": "https://dadosabertos.camara.leg.br/api/v2/proposicoes",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 137,
    "novos": 0
@@ -219,10 +269,10 @@
   {
    "nome": "Senado Federal",
    "url": "https://legis.senado.leg.br/dadosabertos/processo",
-   "quando": "2026-11-25T18:03:47Z",
+   "quando": "2026-11-25T18:32:20Z",
    "ok": true,
    "lidos": 112,
-   "novos": 102
+   "novos": 0
   }
  ]
 }
