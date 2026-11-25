@@ -107,6 +107,8 @@ body {
 .etiqueta.etiqueta-setor { background: none; border: 1px solid var(--borda); color: var(--sutil); }
 .etiqueta.etiqueta-setor::before { display: none; }
 .chips-setores .chip .ponto { border-radius: 2px; }
+.local { color: var(--sutil); }
+.local::before { content: "·"; margin-right: 7px; }
 .situacao { margin: 2px 0 4px; font-size: 0.8rem; color: var(--sutil); }
 .situacao strong { color: var(--texto); font-weight: 600; }
 

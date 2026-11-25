@@ -23,8 +23,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="estilo.css?v=7">
-  <link rel="stylesheet" href="futurista.css?v=7">
+  <link rel="stylesheet" href="estilo.css?v=8">
+  <link rel="stylesheet" href="futurista.css?v=8">
 </head>
 <body>
   <header class="topo">
@@ -71,6 +71,12 @@
 
       <section id="painel-filtros" class="bloco filtros">
         <h2 class="titulo-bloco">Filtros</h2>
+        <label>Estado
+          <select id="f-uf"><option value="">Todos os estados</option></select>
+        </label>
+        <label>Município
+          <select id="f-municipio"><option value="">Todos os municípios</option></select>
+        </label>
         <label>Mostrar
           <select id="f-mostrar">
             <option value="todos">Todos</option>
@@ -113,6 +119,6 @@
     </main>
   </div>
 
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

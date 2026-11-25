@@ -30,7 +30,7 @@
     visitaAnterior: null,
     pagina: 1,
     filtros: Object.assign(
-      { areas: [], fonte: "", tipo: "noticia", periodo: "30", periodoLeis: "tudo", esfera: "", setor: "", mostrar: "todos", esconderOutros: true, busca: "" },
+      { areas: [], fonte: "", tipo: "noticia", periodo: "30", periodoLeis: "tudo", esfera: "", setor: "", uf: "", municipio: "", mostrar: "todos", esconderOutros: true, busca: "" },
       guardar.ler("filtros", {}),
       { busca: "" }
     ),
@@ -56,7 +56,7 @@
     atualizado: $("atualizado"), areas: $("areas"), busca: $("busca"), lista: $("lista"),
     mais: $("btn-mais"), vazio: $("vazio"), resumo: $("resumo-lista"), painel: $("painel-filtros"),
     btnFiltros: $("btn-filtros"), contadorFiltros: $("contador-filtros"), fonte: $("f-fonte"),
-    abas: $("abas"), esferas: $("esferas"), setores: $("setores"), rotuloFonte: $("rotulo-fonte"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
+    abas: $("abas"), esferas: $("esferas"), setores: $("setores"), uf: $("f-uf"), municipio: $("f-municipio"), rotuloFonte: $("rotulo-fonte"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
     fontesStatus: $("fontes-status"),
   };
 
@@ -156,6 +156,7 @@
     await carregarMeses();
     atualizarFavoritosGuardados();
     preencherFontes();
+    preencherLocais();
     aplicarFiltrosNaTela();
     desenhar();
   }
@@ -175,6 +176,26 @@
         : '<span class="erro">✗ com erro</span> · ' + escapar(f.erro);
       return "<li><strong>" + escapar(f.nome) + "</strong> — " + situacao + '<br><span class="sutil">' + escapar(f.url) + "</span></li>";
     }).join("") || "<li>Nenhuma informação ainda.</li>";
+  }
+
+  function preencherLocais() {
+    const doTipo = estado.itens.filter((i) => i.tipo === estado.filtros.tipo);
+    const porUf = {}, porMun = {};
+    doTipo.forEach((i) => {
+      (i.ufs || []).forEach((u) => { porUf[u] = (porUf[u] || 0) + 1; });
+      (i.municipios || []).forEach((m) => { porMun[m] = (porMun[m] || 0) + 1; });
+    });
+    const f = estado.filtros;
+    const estados = (estado.indice && estado.indice.estados) || [];
+    el.uf.innerHTML = '<option value="">Todos os estados</option>' + estados.map((e) =>
+      '<option value="' + e.uf + '"' + (porUf[e.uf] || f.uf === e.uf ? "" : " disabled") + ">" + escapar(e.nome) + " (" + e.uf + ")" +
+      (porUf[e.uf] ? " · " + porUf[e.uf] : "") + "</option>").join("");
+    el.uf.value = f.uf;
+    const muns = Object.keys(porMun).filter((m) => !f.uf || m.endsWith("/" + f.uf)).sort((a, b) => a.localeCompare(b, "pt-BR"));
+    if (f.municipio && !muns.includes(f.municipio)) muns.unshift(f.municipio);
+    el.municipio.innerHTML = '<option value="">' + (muns.length ? "Todos os municípios" : "Nenhum município ainda") + "</option>" +
+      muns.map((m) => '<option value="' + escapar(m) + '">' + escapar(m.replace("/", " – ")) + " · " + (porMun[m] || 0) + "</option>").join("");
+    el.municipio.value = f.municipio;
   }
 
   function preencherFontes() {
@@ -216,6 +237,8 @@
       if (desde && f.mostrar !== "favoritos" && i.data < desde) return false;
       if (f.fonte && !ehLeis() && i.fonte !== f.fonte) return false;
       if (!ignorarEsfera && f.esfera && esferaDe(i) !== f.esfera) return false;
+      if (f.uf && !(i.ufs || []).includes(f.uf)) return false;
+      if (f.municipio && !(i.municipios || []).includes(f.municipio)) return false;
       if (f.tipo && i.tipo !== f.tipo) return false;
       if (f.mostrar === "novos" && !ehNovo(i)) return false;
       if (f.mostrar === "naolidos" && estado.lidos.has(i.id)) return false;
@@ -286,6 +309,8 @@
         (ehNovo(i) ? '<span class="selo-novo">NOVO</span>' : "") +
         (i.tipo === "projeto" ? '<span class="selo-pl">' + escapar(NOMES_TIPO[String(i.titulo).split(" ")[0]] || "Proposição") + "</span>" : "") +
         '<span class="fonte">' + escapar(i.fonte) + "</span><span>·</span><time datetime=\"" + escapar(i.data) + '">' + (i.tipo === "projeto" ? formatarData(i.data) : hora(i.data)) + "</time>" +
+        ((i.municipios || []).length ? '<span class="local">📍 ' + escapar(i.municipios.map((m) => m.replace("/", "-")).join(", ")) + "</span>"
+          : (i.ufs || []).length && (i.ufs || []).length <= 3 ? '<span class="local">📍 ' + escapar(i.ufs.join(", ")) + "</span>" : "") +
       "</div>" +
       '<a class="item-titulo" href="' + escapar(linkSeguro(i.link)) + '" target="_blank" rel="noopener noreferrer">' + escapar(i.titulo) + "</a>" +
       (i.situacao ? '<p class="situacao">Situação: <strong>' + escapar(i.situacao) + "</strong></p>" : "") +
@@ -328,7 +353,7 @@
       const b = el.abas.querySelector('[data-tipo="' + t + '"] .qtd-novos');
       b.hidden = !n; b.textContent = n + (n === 1 ? " novo" : " novos");
     });
-    const ativos = [!ehLeis() && f.fonte, f.mostrar !== "todos", periodoAtual() !== (ehLeis() ? "tudo" : "30"), !f.esconderOutros].filter(Boolean).length;
+    const ativos = [f.uf, f.municipio, !ehLeis() && f.fonte, f.mostrar !== "todos", periodoAtual() !== (ehLeis() ? "tudo" : "30"), !f.esconderOutros].filter(Boolean).length;
     el.contadorFiltros.hidden = !ativos;
     el.contadorFiltros.textContent = ativos;
   }
@@ -399,14 +424,17 @@
   async function aoMudarFiltro() {
     Object.assign(estado.filtros, {
       fonte: ehLeis() ? estado.filtros.fonte : el.fonte.value, [ehLeis() ? "periodoLeis" : "periodo"]: el.periodo.value,
+      municipio: el.uf.value !== estado.filtros.uf && el.municipio.value && !el.municipio.value.endsWith("/" + el.uf.value) ? "" : el.municipio.value,
+      uf: el.uf.value || (el.municipio.value ? el.municipio.value.split("/")[1] : ""),
       mostrar: el.mostrar.value, esconderOutros: el.outros.checked,
     });
     estado.pagina = 1; salvarFiltros();
     await carregarMeses();
     preencherFontes();
+    preencherLocais();
     desenhar();
   }
-  [el.fonte, el.periodo, el.mostrar, el.outros].forEach((c) => c.addEventListener("change", aoMudarFiltro));
+  [el.fonte, el.periodo, el.mostrar, el.outros, el.uf, el.municipio].forEach((c) => c.addEventListener("change", aoMudarFiltro));
 
   el.abas.addEventListener("click", async (ev) => {
     const b = ev.target.closest(".aba");
@@ -415,6 +443,7 @@
     estado.pagina = 1; salvarFiltros();
     aplicarFiltrosNaTela();
     await carregarMeses();
+    preencherLocais();
     desenhar();
     window.scrollTo(0, 0);
   });
@@ -425,7 +454,7 @@
     el.btnFiltros.setAttribute("aria-expanded", String(abrir));
   });
   $("btn-limpar").addEventListener("click", () => {
-    estado.filtros = { areas: [], fonte: "", tipo: estado.filtros.tipo, periodo: "30", periodoLeis: "tudo", esfera: "", setor: "", mostrar: "todos", esconderOutros: true, busca: "" };
+    estado.filtros = { areas: [], fonte: "", tipo: estado.filtros.tipo, periodo: "30", periodoLeis: "tudo", esfera: "", setor: "", uf: "", municipio: "", mostrar: "todos", esconderOutros: true, busca: "" };
     el.busca.value = "";
     aplicarFiltrosNaTela(); el.fonte.value = ""; aoMudarFiltro();
   });
