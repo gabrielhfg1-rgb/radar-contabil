@@ -66,9 +66,10 @@ A partir daí, o robô roda sozinho a cada 3 horas.
 
 ## 3. Como usar o painel
 
+- **Notícias / Leis e projetos:** as duas abas no topo separam as notícias do dia a dia dos projetos de lei da Câmara. Na aba de leis, o período padrão é "Todo o histórico" e a ementa aparece inteira, agrupada pelo mês em que o projeto foi apresentado.
 - **Áreas:** toque nas etiquetas coloridas no topo. Dá para escolher mais de uma. "Todas" limpa a escolha.
 - **Busca:** digite uma palavra (acentos não importam).
-- **Botão de filtros (☰):** escolha *Mostrar* (todos, só novos, não lidos, favoritos), *Tipo* (notícia ou projeto de lei), *Período* e *Fonte*, e se quer esconder os itens "Outros".
+- **Botão de filtros (☰):** escolha *Mostrar* (todos, só novos, não lidos, favoritos), *Período* e *Fonte*, e se quer esconder os itens "Outros".
 - **NOVO:** marca o que chegou desde a sua última visita.
 - **☆ Favorito** e **✓ Lido:** ficam salvos **só no aparelho** em que você marcou (celular e computador têm listas separadas). Abrir uma notícia já a marca como lida.
 - **Situação das fontes** (no fim da página): mostra quais fontes funcionaram na última coleta e quais deram erro.

@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" href="icones/icone-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Radar Contábil">
-  <link rel="stylesheet" href="estilo.css?v=2">
+  <link rel="stylesheet" href="estilo.css?v=3">
 </head>
 <body>
   <header class="topo">
@@ -27,6 +27,10 @@
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <input id="busca" type="search" placeholder="Buscar (ex.: Simples, eSocial, ITCMD)" autocomplete="off" enterkeyhint="search" aria-label="Buscar">
       </div>
+      <nav id="abas" class="abas" role="tablist" aria-label="Seções">
+        <button class="aba" role="tab" data-tipo="noticia" aria-selected="true">Notícias <span class="qtd-novos" hidden></span></button>
+        <button class="aba" role="tab" data-tipo="projeto" aria-selected="false">Leis e projetos <span class="qtd-novos" hidden></span></button>
+      </nav>
       <button id="btn-filtros" class="btn-icone" aria-expanded="false" aria-controls="painel-filtros" title="Filtros">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
         <span id="contador-filtros" class="bolinha" hidden></span>
@@ -51,13 +55,6 @@
             <option value="favoritos">Favoritos</option>
           </select>
         </label>
-        <label>Tipo
-          <select id="f-tipo">
-            <option value="">Notícias e projetos</option>
-            <option value="noticia">Só notícias</option>
-            <option value="projeto">Só projetos de lei</option>
-          </select>
-        </label>
         <label>Período
           <select id="f-periodo">
             <option value="hoje">Hoje</option>
@@ -66,7 +63,7 @@
             <option value="tudo">Todo o histórico</option>
           </select>
         </label>
-        <label>Fonte
+        <label id="rotulo-fonte">Fonte
           <select id="f-fonte"><option value="">Todas as fontes</option></select>
         </label>
         <label class="check"><input id="f-outros" type="checkbox" checked> Esconder "Outros"</label>
@@ -91,6 +88,6 @@
     </main>
   </div>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

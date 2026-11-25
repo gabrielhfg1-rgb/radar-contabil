@@ -27,6 +27,8 @@ USER_AGENT = "Mozilla/5.0 (compatible; RadarContabil/1.0; robo de leitura de fee
 PAUSA_ENTRE_REQUISICOES = 1.5  # segundos, para nao sobrecarregar as fontes
 TEMPO_LIMITE = 30
 
+LIMITE_EMENTA = 1200  # ementa de projeto de lei e texto oficial curto: guarda inteira
+
 PARAMETROS_RASTREIO = ("utm_", "fbclid", "gclid", "mc_", "ref")
 
 
@@ -117,7 +119,7 @@ def coletar_camara(fonte):
             itens.append({
                 "titulo": f"{p.get('siglaTipo')} {p.get('numero')}/{p.get('ano')}",
                 "link": f"https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={p['id']}",
-                "resumo": resumir(ementa),
+                "resumo": resumir(ementa, LIMITE_EMENTA),
                 "data": _data_camara(p),
                 "categorias_fonte": [termo],
                 "tipo": "projeto",
@@ -205,6 +207,8 @@ def main():
                     continue
                 iid = id_do_link(item["link"])
                 if iid in historico:
+                    if item["tipo"] == "projeto":  # atualiza a ementa (antes era cortada)
+                        historico[iid]["resumo"] = item["resumo"]
                     continue
                 if not item["data"] or item["data"] > agora:
                     item["data"] = agora
@@ -221,7 +225,7 @@ def main():
 
     # Reclassifica tudo: se voce mudar categorias.json, os itens antigos se ajustam tambem.
     for item in historico.values():
-        item["resumo"] = resumir(item.get("resumo", ""))
+        item["resumo"] = resumir(item.get("resumo", ""), LIMITE_EMENTA if item.get("tipo") == "projeto" else 280)
         item["areas"] = classificador.classificar(item["titulo"], item["resumo"], *item.get("categorias_fonte", []))
 
     cat_config["areas_painel"] = areas_painel

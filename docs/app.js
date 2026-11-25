@@ -28,11 +28,14 @@
     visitaAnterior: null,
     pagina: 1,
     filtros: Object.assign(
-      { areas: [], fonte: "", tipo: "", periodo: "30", mostrar: "todos", esconderOutros: true, busca: "" },
+      { areas: [], fonte: "", tipo: "noticia", periodo: "30", periodoLeis: "tudo", mostrar: "todos", esconderOutros: true, busca: "" },
       guardar.ler("filtros", {}),
       { busca: "" }
     ),
   };
+
+  if (estado.filtros.tipo !== "projeto") estado.filtros.tipo = "noticia";
+  if (!estado.filtros.periodoLeis) estado.filtros.periodoLeis = "tudo";
 
   // "Novo desde a última visita": a referência vale para a sessão inteira.
   (function () {
@@ -51,7 +54,7 @@
     atualizado: $("atualizado"), areas: $("areas"), busca: $("busca"), lista: $("lista"),
     mais: $("btn-mais"), vazio: $("vazio"), resumo: $("resumo-lista"), painel: $("painel-filtros"),
     btnFiltros: $("btn-filtros"), contadorFiltros: $("contador-filtros"), fonte: $("f-fonte"),
-    tipo: $("f-tipo"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
+    abas: $("abas"), rotuloFonte: $("rotulo-fonte"), periodo: $("f-periodo"), mostrar: $("f-mostrar"), outros: $("f-outros"),
     fontesStatus: $("fontes-status"),
   };
 
@@ -73,6 +76,16 @@
     if (d >= hoje) return "hoje, " + hora;
     if (d >= new Date(hoje - DIA)) return "ontem, " + hora;
     return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
+  }
+  const NOMES_TIPO = {
+    PL: "Projeto de Lei", PLP: "Projeto de Lei Complementar", PEC: "Proposta de Emenda à Constituição",
+    MPV: "Medida Provisória", PDL: "Projeto de Decreto Legislativo",
+  };
+  function ehLeis() { return estado.filtros.tipo === "projeto"; }
+  function periodoAtual() { return ehLeis() ? estado.filtros.periodoLeis : estado.filtros.periodo; }
+  function rotuloMes(iso) {
+    const t = new Date(iso).toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
+    return "Apresentados em " + t;
   }
   function rotuloDia(iso) {
     const d = new Date(iso);
@@ -102,7 +115,7 @@
 
   function mesesNecessarios() {
     const meses = (estado.indice && estado.indice.meses) || [];
-    if (estado.filtros.periodo === "tudo" || estado.filtros.mostrar === "favoritos") return meses;
+    if (periodoAtual() === "tudo" || estado.filtros.mostrar === "favoritos") return meses;
     const limite = new Date(Date.now() - 32 * DIA).toISOString().slice(0, 7);
     return meses.filter((m) => m >= limite);
   }
@@ -166,8 +179,10 @@
   }
 
   function aplicarFiltrosNaTela() {
-    el.tipo.value = estado.filtros.tipo;
-    el.periodo.value = estado.filtros.periodo;
+    el.periodo.value = periodoAtual();
+    el.rotuloFonte.hidden = ehLeis();
+    el.abas.querySelectorAll(".aba").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tipo === estado.filtros.tipo)));
+    document.body.classList.toggle("modo-leis", ehLeis());
     el.mostrar.value = estado.filtros.mostrar;
     el.outros.checked = estado.filtros.esconderOutros;
   }
@@ -183,13 +198,14 @@
       base.sort((a, b) => (a.data < b.data ? 1 : -1));
     }
     let desde = null;
-    if (f.periodo === "hoje") { const h = new Date(); h.setHours(0, 0, 0, 0); desde = h.toISOString(); }
-    else if (f.periodo !== "tudo") desde = new Date(Date.now() - Number(f.periodo) * DIA).toISOString();
+    const periodo = periodoAtual();
+    if (periodo === "hoje") { const h = new Date(); h.setHours(0, 0, 0, 0); desde = h.toISOString(); }
+    else if (periodo !== "tudo") desde = new Date(Date.now() - Number(periodo) * DIA).toISOString();
     const termos = semAcento(f.busca).split(/\s+/).filter(Boolean);
 
     return base.filter((i) => {
       if (desde && f.mostrar !== "favoritos" && i.data < desde) return false;
-      if (f.fonte && i.fonte !== f.fonte) return false;
+      if (f.fonte && !ehLeis() && i.fonte !== f.fonte) return false;
       if (f.tipo && i.tipo !== f.tipo) return false;
       if (f.mostrar === "novos" && !ehNovo(i)) return false;
       if (f.mostrar === "naolidos" && estado.lidos.has(i.id)) return false;
@@ -229,11 +245,11 @@
     const etiquetas = i.areas.map((a) =>
       '<span class="etiqueta" style="--cor:' + escapar(estado.corDaArea[a] || "#7f8c8d") + '">' + escapar(estado.nomeDaArea[a] || a) + "</span>").join("");
     const corPrincipal = estado.corDaArea[i.areas[0]] || "#7f8c8d";
-    return '<li class="item' + (lido ? " lido" : "") + '" data-id="' + escapar(i.id) + '" style="--cor-area:' + escapar(corPrincipal) + '">' +
+    return '<li class="item' + (i.tipo === "projeto" ? " item-lei" : "") + (lido ? " lido" : "") + '" data-id="' + escapar(i.id) + '" style="--cor-area:' + escapar(corPrincipal) + '">' +
       '<div class="item-meta">' +
         (ehNovo(i) ? '<span class="selo-novo">NOVO</span>' : "") +
-        (i.tipo === "projeto" ? '<span class="selo-pl">Projeto de lei</span>' : "") +
-        '<span class="fonte">' + escapar(i.fonte) + "</span><span>·</span><time datetime=\"" + escapar(i.data) + '">' + hora(i.data) + "</time>" +
+        (i.tipo === "projeto" ? '<span class="selo-pl">' + escapar(NOMES_TIPO[String(i.titulo).split(" ")[0]] || "Proposição") + "</span>" : "") +
+        '<span class="fonte">' + escapar(i.fonte) + "</span><span>·</span><time datetime=\"" + escapar(i.data) + '">' + (i.tipo === "projeto" ? formatarData(i.data) : hora(i.data)) + "</time>" +
       "</div>" +
       '<a class="item-titulo" href="' + escapar(linkSeguro(i.link)) + '" target="_blank" rel="noopener noreferrer">' + escapar(i.titulo) + "</a>" +
       (i.resumo ? '<p class="item-resumo">' + escapar(i.resumo) + "</p>" : "") +
@@ -253,7 +269,7 @@
     const visiveis = lista.slice(0, estado.pagina * POR_PAGINA);
     let diaAtual = "", html = "";
     visiveis.forEach((i) => {
-      const dia = rotuloDia(i.data);
+      const dia = ehLeis() ? rotuloMes(i.data) : rotuloDia(i.data);
       if (dia !== diaAtual) { diaAtual = dia; html += '<li class="dia" aria-hidden="false"><h2>' + escapar(dia) + "</h2></li>"; }
       html += cartao(i);
     });
@@ -261,9 +277,14 @@
     el.mais.hidden = visiveis.length >= lista.length;
     el.vazio.hidden = lista.length > 0;
     const novos = lista.filter(ehNovo).length;
-    el.resumo.textContent = lista.length + (lista.length === 1 ? " item" : " itens") + (novos ? " · " + novos + " novos desde a última visita" : "");
+    el.resumo.textContent = lista.length + (ehLeis() ? (lista.length === 1 ? " proposição" : " proposições") : (lista.length === 1 ? " notícia" : " notícias")) + (novos ? " · " + novos + " novos desde a última visita" : "");
     const f = estado.filtros;
-    const ativos = [f.fonte, f.tipo, f.mostrar !== "todos", f.periodo !== "30", !f.esconderOutros].filter(Boolean).length;
+    ["noticia", "projeto"].forEach((t) => {
+      const n = estado.itens.filter((i) => i.tipo === t && ehNovo(i)).length;
+      const b = el.abas.querySelector('[data-tipo="' + t + '"] .qtd-novos');
+      b.hidden = !n; b.textContent = n + (n === 1 ? " novo" : " novos");
+    });
+    const ativos = [!ehLeis() && f.fonte, f.mostrar !== "todos", periodoAtual() !== (ehLeis() ? "tudo" : "30"), !f.esconderOutros].filter(Boolean).length;
     el.contadorFiltros.hidden = !ativos;
     el.contadorFiltros.textContent = ativos;
   }
@@ -319,7 +340,7 @@
 
   async function aoMudarFiltro() {
     Object.assign(estado.filtros, {
-      fonte: el.fonte.value, tipo: el.tipo.value, periodo: el.periodo.value,
+      fonte: ehLeis() ? estado.filtros.fonte : el.fonte.value, [ehLeis() ? "periodoLeis" : "periodo"]: el.periodo.value,
       mostrar: el.mostrar.value, esconderOutros: el.outros.checked,
     });
     estado.pagina = 1; salvarFiltros();
@@ -327,7 +348,18 @@
     preencherFontes();
     desenhar();
   }
-  [el.fonte, el.tipo, el.periodo, el.mostrar, el.outros].forEach((c) => c.addEventListener("change", aoMudarFiltro));
+  [el.fonte, el.periodo, el.mostrar, el.outros].forEach((c) => c.addEventListener("change", aoMudarFiltro));
+
+  el.abas.addEventListener("click", async (ev) => {
+    const b = ev.target.closest(".aba");
+    if (!b || b.dataset.tipo === estado.filtros.tipo) return;
+    estado.filtros.tipo = b.dataset.tipo;
+    estado.pagina = 1; salvarFiltros();
+    aplicarFiltrosNaTela();
+    await carregarMeses();
+    desenhar();
+    window.scrollTo(0, 0);
+  });
 
   el.btnFiltros.addEventListener("click", () => {
     const abrir = !el.painel.classList.contains("aberto");
@@ -335,7 +367,7 @@
     el.btnFiltros.setAttribute("aria-expanded", String(abrir));
   });
   $("btn-limpar").addEventListener("click", () => {
-    estado.filtros = { areas: [], fonte: "", tipo: "", periodo: "30", mostrar: "todos", esconderOutros: true, busca: "" };
+    estado.filtros = { areas: [], fonte: "", tipo: estado.filtros.tipo, periodo: "30", periodoLeis: "tudo", mostrar: "todos", esconderOutros: true, busca: "" };
     el.busca.value = "";
     aplicarFiltrosNaTela(); el.fonte.value = ""; aoMudarFiltro();
   });

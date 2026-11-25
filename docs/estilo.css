@@ -48,7 +48,7 @@ body {
 }
 .topo-conteudo {
   max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr auto; grid-template-areas: "marca botao" "busca busca";
+  display: grid; grid-template-columns: 1fr auto; grid-template-areas: "marca botao" "busca busca" "abas abas";
   align-items: center; gap: 10px 12px;
 }
 .marca { grid-area: marca; display: flex; align-items: center; gap: 10px; min-width: 0; }
@@ -70,6 +70,22 @@ body {
   position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 5px;
   border-radius: 9px; background: var(--novo); color: #fff; font-size: 0.7rem; line-height: 18px; text-align: center;
 }
+
+/* Abas Notícias / Leis */
+.abas { grid-area: abas; display: flex; gap: 22px; margin-bottom: -10px; }
+.aba {
+  font: inherit; font-size: 0.95rem; font-weight: 600; background: none; border: 0; cursor: pointer;
+  color: var(--sutil); padding: 6px 2px 10px; border-bottom: 3px solid transparent;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.aba:hover { color: var(--texto); }
+.aba[aria-selected="true"] { color: var(--primaria-texto); border-bottom-color: var(--primaria-texto); }
+.qtd-novos { background: var(--novo); color: #fff; border-radius: 999px; padding: 0 7px; font-size: 0.68rem; font-weight: 700; line-height: 18px; }
+
+/* Leis: ementa inteira, sem cortar */
+.item-lei .item-resumo { -webkit-line-clamp: unset; display: block; color: var(--texto); opacity: 0.85; }
+.item-lei .item-titulo { font-size: 1.02rem; }
+.selo-pl { color: var(--texto); }
 
 /* ---------------- estrutura ---------------- */
 .layout { max-width: 1200px; margin: 0 auto; }
@@ -174,7 +190,9 @@ main { padding: 6px 16px 32px; min-width: 0; }
 @media (min-width: 900px) {
   body { font-size: 15px; }
   .topo { padding: 12px 24px; }
-  .topo-conteudo { grid-template-columns: 260px 1fr; grid-template-areas: "marca busca"; gap: 24px; }
+  .topo { padding-bottom: 0; }
+  .topo-conteudo { grid-template-columns: 260px 1fr; grid-template-areas: "marca busca" ". abas"; gap: 12px 24px; }
+  .aba { padding: 10px 2px 12px; }
   .busca { max-width: 640px; }
   .btn-icone { display: none; }
 
