@@ -3,7 +3,7 @@
   "fontes": [
     { "nome": "Contábeis", "tipo": "feed", "url": "https://www.contabeis.com.br/rss/noticias/", "ativo": true },
     { "nome": "Contábeis", "tipo": "feed", "url": "https://www.contabeis.com.br/rss/conteudo/", "ativo": true },
-    { "nome": "Receita Federal", "tipo": "feed", "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/RSS", "ativo": true },
+    { "nome": "Receita Federal", "tipo": "feed", "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/ultimas-noticias/RSS", "ativo": true },
     { "nome": "Agência Senado", "tipo": "feed", "url": "https://www12.senado.leg.br/noticias/rss", "ativo": true, "somente_com_area": true },
     { "nome": "Agência Câmara", "tipo": "feed", "url": "https://www.camara.leg.br/noticias/rss/dinamico/ECONOMIA", "ativo": true },
     { "nome": "Agência Câmara", "tipo": "feed", "url": "https://www.camara.leg.br/noticias/rss/dinamico/TRABALHO-E-PREVIDENCIA", "ativo": true },
